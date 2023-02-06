@@ -11,6 +11,6 @@ router = routers.DefaultRouter()
 #The url path for the API
 urlpatterns = [
     path('connectedtvs/', ConnectedTVsListView.as_view(), name='connected_tvs'),
-    path('connected_tvs/<slug:slug>', ConnectedTVsDetailView.as_view(), name='connected_tv_detail'),
+    path('connectedtvs/<int:id>/', ConnectedTVsDetailView.as_view(), name='connected_tv_detail'),
 
 ]
