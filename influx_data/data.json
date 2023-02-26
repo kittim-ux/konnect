@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Silicone_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Remy's",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chebukati",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Stews",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "MLA_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Origin",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Dior_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Preacher",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Red_River",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Trinah",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jovial apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jovial apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jovial_apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Subaru",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kamiti_Block_1",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kamiti_Block_2",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kamiti_Block_3",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Togo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Yemen",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Beijing",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kamiti_Kijiji",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lesotho",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    }
+]
