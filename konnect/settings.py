@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9@wla_7cupp!$v=tf2knh7*pg^chtox6c!a+l8$qj18ice918o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["79a9-105-27-237-116.in.ngrok.io", "127.0.0.1"]
 
 
 # Application definition
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'konnect_admin',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'influx_data'
 
     
 ]
