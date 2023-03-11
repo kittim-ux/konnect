@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9@wla_7cupp!$v=tf2knh7*pg^chtox6c!a+l8$qj18ice918o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["79a9-105-27-237-116.in.ngrok.io", "127.0.0.1"]
+ALLOWED_HOSTS = ['37ae-102-217-167-69.in.ngrok.io']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'konnect', 
-        'USER': 'root', 
+        'USER': 'kittim', 
         'PASSWORD': 'KItt48++',
         'HOST': '127.0.0.1', 
         'PORT': '3306',
