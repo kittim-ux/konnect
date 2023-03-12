@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "name": "Silicone_Apt",
@@ -132,3 +133,6 @@
         "measurement": "ping"
     }
 ]
+=======
+[]
+>>>>>>> e2a106d (added db folder)
