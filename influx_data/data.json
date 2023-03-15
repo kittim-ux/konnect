@@ -1,138 +1,170 @@
-<<<<<<< HEAD
 [
     {
-        "name": "Silicone_Apt",
+        "name": "Bruno",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Remy's",
+        "name": "Fountain_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Chebukati",
+        "name": "Fountain_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Stews",
+        "name": "Maxela_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "MLA_Hse",
+        "name": "Maxela_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Origin",
+        "name": "Jukiwa_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Dior_Hse",
+        "name": "Jukiwa_Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Preacher",
+        "name": "Zion_place",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Red_River",
+        "name": "Azimio",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Trinah",
+        "name": "Azimio",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jovial apt",
+        "name": "Plaza",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jovial apt",
+        "name": "Plaza",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jovial_apt",
+        "name": "PHM",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Subaru",
+        "name": "PHM",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kamiti_Block_1",
+        "name": "Yatta",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kamiti_Block_2",
+        "name": "Yatta",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kamiti_Block_3",
+        "name": "Backsports",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Togo",
+        "name": "Backsports",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Yemen",
+        "name": "Backsports",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Beijing",
+        "name": "Backsports",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kamiti_Kijiji",
+        "name": "Kinundu",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Lesotho",
+        "name": "Kinundu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Studio_B",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Studio_B",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Honda",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Honda",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grocery",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grocery",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     }
 ]
-=======
-[]
->>>>>>> e2a106d (added db folder)
