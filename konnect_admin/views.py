@@ -2,6 +2,7 @@ import csv
 import os
 import json
 from pickle import FALSE
+from pathlib import Path
 from django.shortcuts import render
 from rest_framework import generics, response, status
 from .serializers import TvSerializer
@@ -54,31 +55,40 @@ class ConnectedTVsDetailView(generics.RetrieveAPIView):
 
 #COLLECT ALL BUILDINGS DATA FROM INFLUX
 class InfluxDataView(APIView):
-    load_dotenv()
+    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
+    load_dotenv(dotenv_path=dotenv_path)
+    
     
     CSV_BUCKET_MAP = {
             'kwtbucket': 'kwtbldg.csv',
             'g44bucket': 'g44bldg.csv',
             'zmmbucket': 'zmmbldg.csv',
             'RMM': 'rmmbldg.csv',
-            'G45NBucket': 'g45nbldg.csv'
+            'G45NBucket': 'g45nbldg.csv',
+            'G45SBucket': 'g45sbldg.csv',
+            'LsmBucket': 'lsmbldg.csv',
+            'htrbucket': 'htrbldg.csv',
         }
     BUCKET_HOST_MAP = {
             'kwtbucket': 'KWT-FIBER',
             'g44bucket': 'G44-FIBER',
             'zmmbucket': 'ZMM-FIBER',
-            'zmmbucket': 'ROY-FIBER',
-            'G45NBucket': 'G45N-FIBER'
+            'RMM': 'ROY-FIBER',
+            'G45SBucket': 'G45-FIBER',
+            'G45NBucket': 'G45N-FIBER',
+            'LsmBucket': 'LSM-FIBER',
+            'htrbucket': 'HTR-FIBER',
+            
         }
     token = os.getenv('token')
     org = os.getenv('org')
     url = os.getenv('url')
 
     def off_bldg(self, bucket, token=token, org=org, url=url): 
-        influx_client = InfluxDBClient(url="http://app.sasakonnect.net:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
+        influx_client = InfluxDBClient(url=url, token=token, org=org)
         
 
-        dataset_dir = '/home/kittim/Documents/projects/admindash/konnect/influx_data/datasets/'
+        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
         
 
         with open(os.path.join(dataset_dir, self.CSV_BUCKET_MAP[bucket]), "r") as f:
@@ -121,7 +131,8 @@ class InfluxDataView(APIView):
 
 #COLLECT DATA FOR A SINGLE BUILDING 
 class InfluxBldgView(APIView):
-    load_dotenv()
+    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
+    load_dotenv(dotenv_path=dotenv_path)
     
     CSV_BUCKET_MAP = {
         'kwtbucket': {'csv_file': 'kwtbldg.csv', 'bucket': 'kwtbucket'},
@@ -176,7 +187,7 @@ class InfluxBldgView(APIView):
             |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
 
-        influx_client = InfluxDBClient(url="http://app.sasakonnect.net:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
+        influx_client = InfluxDBClient(url=url, token=token, org=org)
         results = influx_client.query_api().query(query_string)
 
         data = []

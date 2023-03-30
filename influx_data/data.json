@@ -1,168 +1,258 @@
 [
     {
-        "name": "Bruno",
+        "name": "Corners_Apt",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Fountain_Hse",
+        "name": "Sanitizer",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Fountain_Hse",
+        "name": "Amazon",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Maxela_Hse",
+        "name": "Victoria",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Maxela_Hse",
+        "name": "Samlyd_Plaza",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jukiwa_Hse",
+        "name": "Rock_Wall",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jukiwa_Hse",
+        "name": "DMN",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Zion_place",
+        "name": "Duwell_complex",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Azimio",
+        "name": "Turtles Corners",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Azimio",
+        "name": "Alexis",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Plaza",
+        "name": "Berry",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Plaza",
+        "name": "Bomas",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "PHM",
+        "name": "China Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "PHM",
+        "name": "Corner Stone Villa 1",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Yatta",
+        "name": "Corner Stone Villa 2",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Yatta",
+        "name": "Da Blax",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Devine Apt",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Focus",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Focus Annexe",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Franki",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kinundu",
+        "name": "Genesis Court",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kinundu",
+        "name": "Gold Diaries",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Studio_B",
+        "name": "Koshi",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Studio_B",
+        "name": "Lambwa Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Honda",
+        "name": "Mbuthia Hse",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Honda",
+        "name": "Melvin",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Grocery",
+        "name": "Nelius",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Grocery",
+        "name": "Nyagas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nyota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pillar of Faith",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Schechem Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sealife",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sunday Express",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Welders",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sassy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Zulus",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Eleazar",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Vansget",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Flora",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Planet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Arcade",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Iriuko Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Duncan",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
