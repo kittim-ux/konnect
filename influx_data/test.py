@@ -1,10 +1,7 @@
 import os
 import csv
 import json
-<<<<<<< HEAD
-=======
 import requests
->>>>>>> e2a106d (added db folder)
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient, Query
 from celery import Celery
@@ -17,19 +14,17 @@ load_dotenv()
 token = os.getenv('token')
 org = os.getenv('org')
 url = os.getenv('url')
-<<<<<<< HEAD
+
 
 app = Celery('test', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
 
 dataset_dir = '/home/kittim/Documents/projects/admindash/konnect/influx_data/datasets'
-=======
 #webhook_url = os.getenv('webhook_url')
 
 webhook_url = "https://open.larksuite.com/open-apis/bot/v2/hook/5b08e3be-a43e-4186-882f-acca7712f280"
 app = Celery('test', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
 
 dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
->>>>>>> e2a106d (added db folder)
 bucket_map = {
         'kwtbldg': 'kwtbucket',
         'g44bldg': 'g44bucket',
@@ -37,19 +32,9 @@ bucket_map = {
         'rmmbldg': 'RMM',
         'g45nbldg': 'G45NBucket'
 }
-<<<<<<< HEAD
-
-@app.task(name='all_buildings')
-def all_buildings(bucket, host):
-=======
-def send_to_webhook(webhook_url, data):
-    headers = {'Content-type': 'application/json'}
-    response = requests.post(webhook_url, headers=headers, json=data)
-    response.raise_for_status()
 
 @app.task(name='all_buildings')
 def all_buildings(bucket, host, webhook_url):
->>>>>>> e2a106d (added db folder)
     influx_client = InfluxDBClient(url=url, token=token, org=org)
     with open(os.path.join(dataset_dir, f"{bucket}.csv"), "r") as f:
         reader = csv.reader(f)
@@ -83,60 +68,42 @@ def all_buildings(bucket, host, webhook_url):
     with open("data.json", "w") as file:
         file.write(json.dumps(all_results, indent=4))
 
-<<<<<<< HEAD
-=======
-    send_to_webhook(webhook_url, all_results)
-    print(webhook_url)
-
->>>>>>> e2a106d (added db folder)
     return all_results
 
 app.conf.beat_schedule = {
     'kwtbucket-kwt-fiber-every-30-seconds': {
         'task': 'all_buildings',
         'schedule': 30.0,
-<<<<<<< HEAD
         'args': ('kwtbldg', 'KWT-FIBER'),
-=======
+
         'args': ('kwtbldg', 'KWT-FIBER', webhook_url),
         
->>>>>>> e2a106d (added db folder)
     },
     'g44bucket-g44-fiber-every-30-seconds': {
         'task': 'all_buildings',
        'schedule': 30.0,
-<<<<<<< HEAD
+
         'args': ('g44bldg', 'G44-FIBER'),
-=======
         'args': ('g44bldg', 'G44-FIBER', webhook_url),
->>>>>>> e2a106d (added db folder)
     },
    'zmmbucket-zmm-fiber-every-30-seconds': {
         'task': 'all_buildings',
         'schedule': 30.0,
-<<<<<<< HEAD
-        'args': ('zmmbldg', 'ZMM-FIBER'),
-=======
         'args': ('zmmbldg', 'ZMM-FIBER', webhook_url),
->>>>>>> e2a106d (added db folder)
+
     },
     'rmm-roy-fiber-every-30-seconds': {
         'task': 'all_buildings',
         'schedule': 30.0,
-<<<<<<< HEAD
         'args': ('rmmbldg', 'ROY-FIBER'),
-=======
         'args': ('rmmbldg', 'ROY-FIBER', webhook_url),
->>>>>>> e2a106d (added db folder)
     },
     'g45n-fiber-every-30-seconds': {
         'task': 'all_buildings',
         'schedule': 30.0,
-<<<<<<< HEAD
         'args': ('g45nbldg', 'G45N-FIBER'),
-=======
         'args': ('g45nbldg', 'G45N-FIBER', webhook_url),
->>>>>>> e2a106d (added db folder)
+
     },
 }
 
