@@ -78,7 +78,7 @@ class InfluxDataView(APIView):
         influx_client = InfluxDBClient(url="http://app.sasakonnect.net:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
         
 
-        dataset_dir = '/home/kittim/Documents/projects/admindash/konnect/influx_data/datasets/'
+        dataset_dir = '/home/ahdaniel/projects/buildingservices/konnect/influx_data/datasets'
         
 
         with open(os.path.join(dataset_dir, self.CSV_BUCKET_MAP[bucket]), "r") as f:
@@ -155,7 +155,7 @@ class InfluxBldgView(APIView):
         csv_file = self.CSV_BUCKET_MAP[bucket]['csv_file']
         bucket = self.CSV_BUCKET_MAP[bucket]['bucket']
         
-        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
+        dataset_dir = '/home/ahdaniel/projects/buildingservices/konnect/influx_data/datasets'
 
         # Check if the building name exists in the specified CSV file
         with open(os.path.join(dataset_dir, csv_file), "r") as f:
@@ -176,7 +176,7 @@ class InfluxBldgView(APIView):
             |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
 
-        influx_client = InfluxDBClient(url="http://app.sasakonnect.net:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
+        influx_client = InfluxDBClient(url="http://127.0.0.1:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
         results = influx_client.query_api().query(query_string)
 
         data = []
