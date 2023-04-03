@@ -1,168 +1,2706 @@
 [
     {
-        "name": "Bruno",
+        "name": "Australia",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Fountain_Hse",
+        "name": "Australia",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Fountain_Hse",
+        "name": "Benson",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Maxela_Hse",
+        "name": "Benson",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Maxela_Hse",
+        "name": "Chawakiki",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jukiwa_Hse",
+        "name": "Chawakiki",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Jukiwa_Hse",
+        "name": "Chronixx",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Zion_place",
+        "name": "Chronixx",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Azimio",
+        "name": "Discovary",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Azimio",
+        "name": "Discovary",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Plaza",
+        "name": "Godis",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Plaza",
+        "name": "Godis",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "PHM",
+        "name": "Kabura's",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "PHM",
+        "name": "Kabura's",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Yatta",
+        "name": "Kitari",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Yatta",
+        "name": "Kitari",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Peptang",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Peptang",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Vagabond",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Backsports",
+        "name": "Vagabond",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kinundu",
+        "name": "Waheeda",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Kinundu",
+        "name": "Waheeda",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Studio_B",
+        "name": "Waithaka's",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Studio_B",
+        "name": "Waithaka's",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Honda",
+        "name": "Dav",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Honda",
+        "name": "Dav",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Grocery",
+        "name": "Drankyard",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
     },
     {
-        "name": "Grocery",
+        "name": "Drankyard",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Estate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Estate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Frenga",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Frenga",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Highland",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Highland",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lukaku",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lukaku",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Miski",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Miski",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wakiarie",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wakiarie",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alexis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alexis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Berry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Berry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bomas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bomas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Focus",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Focus",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Franki",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Franki",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Koshi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Koshi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Luckystar",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Luckystar",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Melvin",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Melvin",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nelius",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nelius",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nyagas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nyagas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nyota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nyota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sealife",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sealife",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Welders",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Welders",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alaska",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alaska",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bambi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bambi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Demax",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Demax",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "G-white",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "G-white",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Infinix",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Infinix",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mohem",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mohem",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nahashon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nahashon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Switch",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Switch",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Testimony",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Testimony",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Windsor",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Windsor",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Winners",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Winners",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ambrozila",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ambrozila",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bethsaida",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bethsaida",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Broni",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Broni",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chevrolet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chevrolet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Davido",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Davido",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Dodoma",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Dodoma",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Genesis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Genesis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hogs",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hogs",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kariukis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kariukis",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Karumaindo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Karumaindo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pastores",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pastores",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Perez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Perez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Progy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Progy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Somo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Somo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Torry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Torry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Transformers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Transformers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wachuka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wachuka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Calvary",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Calvary",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Federes",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Federes",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fountain",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fountain",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Intel",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Intel",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jayjos",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jayjos",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Josdan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Josdan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiwaka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiwaka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Madaraka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Madaraka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Magwas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Magwas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Paparazzi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Paparazzi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sokoni",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sokoni",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Varan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Varan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Breeder",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Breeder",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Gituamba",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Gituamba",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Primiam",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Primiam",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Promise",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Promise",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Robertos",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Robertos",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Shield",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Shield",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tusaidiane",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tusaidiane",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Waken",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Waken",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Raindrop",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Raindrop",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chicago",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chicago",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tricta",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tricta",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Zamursky",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Zamursky",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bomba",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bomba",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Dominios",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Dominios",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jawabu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jawabu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Winery",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Winery",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Annacha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Annacha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Elimer",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Enios",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Enios",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fraso",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fraso",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lirac",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lirac",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mindy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mindy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ostrich",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ostrich",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Puani",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Puani",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sky",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sky",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sunny",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sunny",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Famoland",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Famoland",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fridat",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fridat",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jamil",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jamil",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Arcade",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Arcade",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Artmost",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Artmost",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Gakoigi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Gakoigi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grandmoon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grandmoon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kuwait",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kuwait",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Luckystar",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Luckystar",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mikachi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mikachi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Advan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Advan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bebvick",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bebvick",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Benz",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Benz",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emkay",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emkay",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Krugger",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Krugger",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mumbi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mumbi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Njireh",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Njireh",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Palma",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Palma",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sangria",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sangria",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Darling",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Darling",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fikem",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Fikem",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Flora",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Flora",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Infamous",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Infamous",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "J.K.K",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "J.K.K",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jawama",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jawama",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kifaru",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kifaru",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Martin",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Martin",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nile",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nile",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Passionate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Passionate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pepsi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pepsi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Planet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Planet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Roka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Roka",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rossy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rossy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rubi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rubi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sparta",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sparta",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Vansget",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Vansget",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Vasha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Vasha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kinyota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kinyota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Oxford",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Oxford",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pavillion",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pavillion",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rashinn",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rashinn",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Respect",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Respect",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Thagari",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Thagari",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wamlambez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wamlambez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "ATM",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "ATM",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chudi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Chudi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "G-Star",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "G-Star",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rego",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rego",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Texas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Texas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bunge",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bunge",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jimha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jimha",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lakers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lakers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mayolo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mayolo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Richmode",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Richmode",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Scarlet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Scarlet",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tausi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Tausi",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wuhan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wuhan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Black_Hub",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Black_Hub",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Greener_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Greener_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juchris_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juchris_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiariki",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiariki",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mega",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mega",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Space_Jam",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Space_Jam",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wa_Susan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wa_Susan",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Zara",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Zara",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lulu_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lulu_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alison",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Alison",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Amazon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Amazon",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Maitu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Maitu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Site_Place",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Site_Place",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "The_Cephas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "The_Cephas",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Victoria",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Victoria",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bosnia",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bosnia",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Brantford",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Brantford",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emms_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emms_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juliana_Court",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juliana_Court",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiuu_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kiuu_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Power_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Power_Hse",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Railway_Towers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Railway_Towers",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Samlyd_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Samlyd_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Storm_45",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Storm_45",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Total",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Total",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wanadota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wanadota",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Waturu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Waturu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Barak",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Barak",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Blanko",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Blanko",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hezzy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hezzy",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juice_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Juice_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Main_Gate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Main_Gate",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nebraska",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Nebraska",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pinchez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Pinchez",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sunset",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sunset",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Trendvest_Arcade",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Trendvest_Arcade",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Uniformity",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Uniformity",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wanjiku's_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Wanjiku's_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Blair",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Blair",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Harry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Harry",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mugos_Court",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mugos_Court",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "NSG",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "NSG",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Porter",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Porter",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Savo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Savo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Arc_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Arc_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bandwith_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Bandwith_Plaza",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Continental_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Continental_Suites",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Golden_Ark",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Golden_Ark",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rock_Wall",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rock_Wall",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grannies_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Grannies_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hampshire",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Hampshire",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Leviticus",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Leviticus",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lwanja_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Lwanja_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rugano_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rugano_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Airport_67",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Airport_67",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "House_296",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "House_296",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Paflo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Paflo",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Peel_Investment",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Peel_Investment",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "DMN",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "DMN",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Duwell_complex",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Duwell_complex",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kimutu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Kimutu",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Qwetu_PoP",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Qwetu_PoP",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sidama",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Sidama",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Skyfliz_atp",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Skyfliz_atp",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ekusa",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Ekusa",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emaus_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Emaus_Apt",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mwalimu_Flats",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Mwalimu_Flats",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rehoboth",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Rehoboth",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jupiter_N",
+        "value": 100.0,
+        "field": "percent_packet_loss",
+        "measurement": "ping"
+    },
+    {
+        "name": "Jupiter_N",
         "value": 100.0,
         "field": "percent_packet_loss",
         "measurement": "ping"
