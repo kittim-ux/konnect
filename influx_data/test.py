@@ -50,7 +50,7 @@ def all_buildings(bucket, host, webhook_url):
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{host}")
             |> filter(fn: (r) => r["name"] == "{name}")
-            |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+            |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
         results = influx_client.query_api().query(query_string)
         data = []
