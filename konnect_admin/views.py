@@ -88,7 +88,7 @@ class InfluxDataView(APIView):
         influx_client = InfluxDBClient(url=url, token=token, org=org)
         
 
-        dataset_dir = '/home/ahdaniel/projects/buildingservices/konnect/influx_data/datasets'
+        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
         
 
         with open(os.path.join(dataset_dir, self.CSV_BUCKET_MAP[bucket]), "r") as f:
@@ -166,7 +166,7 @@ class InfluxBldgView(APIView):
         csv_file = self.CSV_BUCKET_MAP[bucket]['csv_file']
         bucket = self.CSV_BUCKET_MAP[bucket]['bucket']
         
-        dataset_dir = '/home/ahdaniel/projects/buildingservices/konnect/influx_data/datasets'
+        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
 
         # Check if the building name exists in the specified CSV file
         with open(os.path.join(dataset_dir, csv_file), "r") as f:
@@ -212,3 +212,5 @@ class InfluxBldgView(APIView):
             return JsonResponse({"error": "Bucket and building_name are required parameters"})
         else:
             return self.off_bldg(bucket, building_name)
+
+#COLLECT DATA FOR ONU in the current model
