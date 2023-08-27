@@ -15,7 +15,6 @@ from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from rest_framework.views import APIView
 
-
 #Dispaly TVs' Data. 
 class ConnectedTVsListView(generics.ListAPIView):
     queryset = ConnectedTVs.objects.all()
@@ -184,10 +183,10 @@ class InfluxBldgView(APIView):
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
             |> filter(fn: (r) => r["name"] == "{building_name}")
-            |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+            |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
 
-        influx_client = InfluxDBClient(url="http://127.0.0.1:8086", token="Sj2kYgP81WjQs_PFBnUmOB4qtgJtpzbmvE-1M1i3uCI0x9wCQOIFMAwezoTb7roY-p1S3NcpIXt2yt1-SEPrmQ==", org="AH")
+        influx_client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
         results = influx_client.query_api().query(query_string)
 
         data = []
@@ -213,4 +212,52 @@ class InfluxBldgView(APIView):
         else:
             return self.off_bldg(bucket, building_name)
 
-#COLLECT DATA FOR ONU in the current model
+#COLLECT DATA FOR ONU in the New model
+class NewModelView(APIView):
+    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
+    load_dotenv(dotenv_path=dotenv_path)
+    
+    BUCKET_HOST_MAP = {
+        'STNBucket': 'STN-FIBER',
+        'MWKs': 'MWKs-FIBER',
+    }
+
+    token = os.getenv('token')
+    org = os.getenv('org')
+    url = os.getenv('url')
+
+    def get_onu_status(self, bucket):
+        query = f"""from(bucket: "{bucket}")
+            |> range(start: -1m)
+            |> filter(fn: (r) => r["_measurement"] == "interface")
+            |> filter(fn: (r) => r["_field"] == "ifOperStatus")
+            |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
+            |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+            |> yield(name: "mean")"""
+
+        influx_client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
+        results = influx_client.query_api().query(org=self.org, query=query)
+
+        data = []
+        for table in results:
+            for record in table.records:
+                serial_number = record.values.get("serialNumber", None)
+                if serial_number:
+                    data.append({
+                        'ifDescr': record.values["ifDescr"],
+                        'serialNumber': serial_number,
+                        'ifOperStatus': record.get_value(),
+                    })
+        return data
+
+    def get(self, request):
+        bucket = request.query_params.get('bucket', None)
+  
+        if not bucket:
+            return JsonResponse({"error": "Bucket parameter is required"})
+        
+        try:
+            onu_status = self.get_onu_status(bucket)
+            return JsonResponse(onu_status, safe=False)
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
