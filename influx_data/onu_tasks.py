@@ -73,8 +73,8 @@ def get_onu_status(bucket):
 
     for entry in data:
         query = f"""
-            INSERT INTO {table_name} (ifDescr, serialNumber, ifOperStatus)
-            VALUES (%s, %s, %s)
+            INSERT INTO {table_name} (ifDescr, serialNumber, ifOperStatus, timestamp)
+            VALUES (%s, %s, %s, NOW())
         """
         values = (entry['ifDescr'], entry['serialNumber'], entry['ifOperStatus'])
         cursor.execute(query, values)
@@ -86,15 +86,15 @@ def get_onu_status(bucket):
 
 # Celery schedule
 app.conf.beat_schedule = {
-    #'STNBucket-STN-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 30.0,
-    #    'args': ('STNBucket',),  # Pass as a tuple
-    #},
+    'STNBucket-STN-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 60.0,
+        'args': ('STNBucket',),  # Pass as a tuple
+    },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 30.0,
-        'args': ('MWKs','MWKs-FIBER',),  # Pass as a tuple
+        'schedule': 60.0,
+        'args': ('MWKs',),  # Pass as a tuple
     },
     # Add more schedules for other buckets
 }

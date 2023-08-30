@@ -15,4 +15,5 @@ urlpatterns = [
     path('off_buildings/', views.InfluxDataView.as_view(), name='off_buildings'),
     path('influxbldgview/', views.InfluxBldgView.as_view(), name='bldg_data'),
     path('newmodelview/', views.NewModelView.as_view(), name='onu_data'),
+    path('onu_data/', views.ONUView.as_view(), name='onu_view'),
 ]

@@ -5,10 +5,13 @@ from pickle import FALSE
 from pathlib import Path
 from django.shortcuts import render
 from rest_framework import generics, response, status
+from rest_framework.response import Response
 from .serializers import TvSerializer
 from django.views import generic
 from django.views.generic import View
 from rest_framework.decorators import api_view
+from django.db import connection
+from datetime import datetime, timedelta
 from .models import ConnectedTVs
 from django.http import JsonResponse
 from dotenv import load_dotenv
@@ -212,7 +215,7 @@ class InfluxBldgView(APIView):
         else:
             return self.off_bldg(bucket, building_name)
 
-#COLLECT DATA FOR ONU in the New model
+#COLLECT DATA FROM INFLUX FOR ONU in the New model
 class NewModelView(APIView):
     dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
     load_dotenv(dotenv_path=dotenv_path)
@@ -261,3 +264,33 @@ class NewModelView(APIView):
             return JsonResponse(onu_status, safe=False)
         except Exception as e:
             return JsonResponse({"error": str(e)})
+
+#Retrieve Data From The database 
+class ONUView(APIView):
+    def get(self, request):
+        # Find the most recent timestamp
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT MAX(timestamp) FROM sunton")
+            most_recent_timestamp = cursor.fetchone()[0]
+
+        # Execute your raw SQL query to retrieve the data with the most recent timestamp
+        query = """
+            SELECT ifDescr, serialNumber, ifOperStatus, timestamp
+            FROM sunton
+            WHERE timestamp = %s
+        """
+        with connection.cursor() as cursor:
+            cursor.execute(query, (most_recent_timestamp,))
+            data = cursor.fetchall()
+
+        # Format the fetched data into a list of dictionaries
+        formatted_data = []
+        for row in data:
+            formatted_data.append({
+                'ifDescr': row[0],
+                'serialNumber': row[1],
+                'ifOperStatus': row[2],
+                'timestamp': row[3].strftime('%Y-%m-%d %H:%M:%S')
+            })
+
+        return Response(formatted_data, status=status.HTTP_200_OK)
