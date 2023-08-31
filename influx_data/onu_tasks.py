@@ -88,12 +88,12 @@ def get_onu_status(bucket):
 app.conf.beat_schedule = {
     'STNBucket-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 30.0,
         'args': ('STNBucket',),  # Pass as a tuple
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 30.0,
         'args': ('MWKs',),  # Pass as a tuple
     },
     # Add more schedules for other buckets

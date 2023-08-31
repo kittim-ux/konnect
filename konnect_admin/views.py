@@ -223,6 +223,7 @@ class NewModelView(APIView):
     BUCKET_HOST_MAP = {
         'STNBucket': 'STN-FIBER',
         'MWKs': 'MWKs-FIBER',
+        
     }
 
     token = os.getenv('token')
