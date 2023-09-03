@@ -1,38 +1,32 @@
 import os
 import csv
 import json
-import requests
 from dotenv import load_dotenv
-from influxdb_client import InfluxDBClient, Query
+from influxdb_client import InfluxDBClient
 from celery import Celery
 import logging
-import mysql.connector
-logging.basicConfig(level=logging.DEBUG)
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import bulk
 
+logging.basicConfig(level=logging.DEBUG)
 
 app = Celery('test', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
 
+# Load environment variables
 load_dotenv()
-
 token = os.getenv('token')
 org = os.getenv('org')
 url = os.getenv('url')
-
+#MAP buckets with their respective data
 BUCKET_HOST_MAP = {
     'STNBucket': 'STN-FIBER',
     'MWKs': 'MWKs-FIBER',
 }
 
-# MySQL database configuration
-mysql_host = os.getenv('mysql_host')
-mysql_user = os.getenv('mysql_user')
-mysql_password = os.getenv('mysql_password')
-mysql_database = os.getenv('mysql_database')
-
-# Define a dictionary to map buckets to table names
-BUCKET_TABLE_MAP = {
-    'STNBucket': 'sunton',
-    'MWKs': 'mwikis',  # Add more mappings for other regions
+# Define a mapping of bucket names to Elasticsearch index names
+BUCKET_INDEX_MAP = {
+    'STNBucket': 'stnbucket',
+    'MWKs': 'mwks',
 }
 
 @app.task(name='onu_status_task')
@@ -44,10 +38,11 @@ def get_onu_status(bucket):
         |> filter(fn: (r) => r["host"] == "{BUCKET_HOST_MAP[bucket]}")
         |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
         |> yield(name: "mean")"""
-
+    print(f"Fetching data from {bucket}...")
 
     influx_client = InfluxDBClient(url=url, token=token, org=org)
     results = influx_client.query_api().query(org=org, query=query)
+    print(f"Fetched {len(results)} records from {bucket}")
 
     data = []
     for table in results:
@@ -58,43 +53,52 @@ def get_onu_status(bucket):
                     'ifDescr': record.values["ifDescr"],
                     'serialNumber': serial_number,
                     'ifOperStatus': record.get_value(),
+                    #'timestamp': record.get_field(),
                 })
 
-    # Insert data into MySQL database
-    connection = mysql.connector.connect(
-        host=mysql_host,
-        user=mysql_user,
-        password=mysql_password,
-        database=mysql_database
-    )
-    cursor = connection.cursor()
-    # Get the corresponding table name for the region (bucket)
-    table_name = BUCKET_TABLE_MAP.get(bucket, 'default_table_name')
+ 
+    
+    # Initialize the Elasticsearch client
+    es_host = os.getenv('ELASTICSEARCH_HOST')
+    es_port = int(os.getenv('ELASTICSEARCH_PORT'))
+    es_scheme = os.getenv('ELASTICSEARCH_SCHEME')
+    
+    es = Elasticsearch([{'host': es_host, 'port': es_port, 'scheme': es_scheme}])
+    
+    # Get the Elasticsearch index name based on the bucket name
+    elasticsearch_index = BUCKET_INDEX_MAP.get(bucket, None)
+    
+    if elasticsearch_index:
+        # Index the data into Elasticsearch with the dynamically determined index name
+        documents = []
+        for entry in data:
+            document = {
+                'ifDescr': entry['ifDescr'],
+                'serialNumber': entry['serialNumber'],
+                'ifOperStatus': entry['ifOperStatus'],
+                #'timestamp': entry['timestamp'],
+            }
+            json_document = json.dumps(document)  # Convert the document to a JSON string
+            documents.append(json_document)
+    
+        # Use the Elasticsearch bulk API to write the documents to Elasticsearch in batches
+        bulk(es, documents, index=elasticsearch_index)
 
-    for entry in data:
-        query = f"""
-            INSERT INTO {table_name} (ifDescr, serialNumber, ifOperStatus, timestamp)
-            VALUES (%s, %s, %s, NOW())
-        """
-        values = (entry['ifDescr'], entry['serialNumber'], entry['ifOperStatus'])
-        cursor.execute(query, values)
-
-    connection.commit()
-    connection.close()
-
+    
     return data
+
 
 # Celery schedule
 app.conf.beat_schedule = {
     'STNBucket-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 30.0,
-        'args': ('STNBucket',),  # Pass as a tuple
+        'schedule': 60.0,
+        'args': ('STNBucket',),
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 30.0,
-        'args': ('MWKs',),  # Pass as a tuple
+        'schedule': 60.0,
+        'args': ('MWKs',),
     },
     # Add more schedules for other buckets
 }
