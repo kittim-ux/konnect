@@ -1,12 +1,13 @@
 import os
-import csv
 import json
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from celery import Celery
 import logging
+import time 
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
+from datetime import datetime  # Import datetime module
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -17,7 +18,7 @@ load_dotenv()
 token = os.getenv('token')
 org = os.getenv('org')
 url = os.getenv('url')
-#MAP buckets with their respective data
+# MAP buckets with their respective data
 BUCKET_HOST_MAP = {
     'STNBucket': 'STN-FIBER',
     'MWKs': 'MWKs-FIBER',
@@ -28,6 +29,7 @@ BUCKET_INDEX_MAP = {
     'STNBucket': 'stnbucket',
     'MWKs': 'mwks',
 }
+
 
 @app.task(name='onu_status_task')
 def get_onu_status(bucket):
@@ -49,25 +51,29 @@ def get_onu_status(bucket):
         for record in table.records:
             serial_number = record.values.get("serialNumber", None)
             if serial_number:
+                if_descr = record.values.get("ifDescr", "N/A")  # Default to "N/A" if 'ifDescr' is missing
+                
+                # Generate the Elasticsearch timestamp using the current time
+                elasticsearch_timestamp = datetime.utcnow().isoformat()
+                
                 data.append({
-                    'ifDescr': record.values["ifDescr"],
+                    'ifDescr': if_descr,
                     'serialNumber': serial_number,
                     'ifOperStatus': record.get_value(),
-                    #'timestamp': record.get_field(),
+                    'influx_timestamp': record.values['_time'].isoformat(),  # Convert InfluxDB timestamp to ISO format string
+                    'elastic_timestamp': elasticsearch_timestamp,  # Include the Elasticsearch timestamp
                 })
 
- 
-    
     # Initialize the Elasticsearch client
     es_host = os.getenv('ELASTICSEARCH_HOST')
     es_port = int(os.getenv('ELASTICSEARCH_PORT'))
     es_scheme = os.getenv('ELASTICSEARCH_SCHEME')
-    
+
     es = Elasticsearch([{'host': es_host, 'port': es_port, 'scheme': es_scheme}])
-    
+
     # Get the Elasticsearch index name based on the bucket name
     elasticsearch_index = BUCKET_INDEX_MAP.get(bucket, None)
-    
+
     if elasticsearch_index:
         # Index the data into Elasticsearch with the dynamically determined index name
         documents = []
@@ -76,17 +82,16 @@ def get_onu_status(bucket):
                 'ifDescr': entry['ifDescr'],
                 'serialNumber': entry['serialNumber'],
                 'ifOperStatus': entry['ifOperStatus'],
-                #'timestamp': entry['timestamp'],
+                'influx_timestamp': entry['influx_timestamp'],  # Include the InfluxDB timestamp
+                'elastic_timestamp': entry['elastic_timestamp'],  # Include the Elasticsearch timestamp
             }
             json_document = json.dumps(document)  # Convert the document to a JSON string
             documents.append(json_document)
-    
+
         # Use the Elasticsearch bulk API to write the documents to Elasticsearch in batches
         bulk(es, documents, index=elasticsearch_index)
 
-    
     return data
-
 
 # Celery schedule
 app.conf.beat_schedule = {
@@ -102,3 +107,4 @@ app.conf.beat_schedule = {
     },
     # Add more schedules for other buckets
 }
+
