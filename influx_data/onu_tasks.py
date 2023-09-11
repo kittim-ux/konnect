@@ -4,20 +4,22 @@ from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from celery import Celery
 import logging
-import time 
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
-from datetime import datetime  # Import datetime module
-
+from datetime import datetime
+from redcache import cache_data, get_cached_data
+from onu_confirmation import confirm_onu  # Import the confirm_onu function
+from utils import extract_gpon_port, extract_olt_number
 logging.basicConfig(level=logging.DEBUG)
 
-app = Celery('test', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
+app = Celery('onu_tasks', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
 
 # Load environment variables
 load_dotenv()
-token = os.getenv('token')
-org = os.getenv('org')
-url = os.getenv('url')
+url = 'http://105.29.165.232:23027'
+token = '1u1P_0nkrKLmdByZHcxZp0J7SjxRcot95qPiE82GxskxdAUCoSJiCDDvkuWmyGXQQIxyYH41y_YV0w66YeXWCA=='
+org = 'techops_monitor'
+
 # MAP buckets with their respective data
 BUCKET_HOST_MAP = {
     'STNBucket': 'STN-FIBER',
@@ -29,7 +31,6 @@ BUCKET_INDEX_MAP = {
     'STNBucket': 'stnbucket',
     'MWKs': 'mwks',
 }
-
 
 @app.task(name='onu_status_task')
 def get_onu_status(bucket):
@@ -48,21 +49,44 @@ def get_onu_status(bucket):
 
     data = []
     for table in results:
-        for record in table.records:
-            serial_number = record.values.get("serialNumber", None)
-            if serial_number:
-                if_descr = record.values.get("ifDescr", "N/A")  # Default to "N/A" if 'ifDescr' is missing
-                
-                # Generate the Elasticsearch timestamp using the current time
+     for record in table.records:
+        serial_number = record.values.get("serialNumber", None)
+        if serial_number:
+            if_descr = record.values.get("ifDescr", "N/A")
+            agent_host = record.values.get("agent_host", "N/A")
+            gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
+            olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
+            if_oper_status = record["_value"]  # Access the value of ifOperStatus
+
+            # Check if data is cached
+            cached_data = get_cached_data(bucket, serial_number)
+
+            if not cached_data and if_oper_status == 1:
+                # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
                 elasticsearch_timestamp = datetime.utcnow().isoformat()
-                
-                data.append({
+                data_entry = {
+                    'bucket': bucket,
                     'ifDescr': if_descr,
                     'serialNumber': serial_number,
-                    'ifOperStatus': record.get_value(),
-                    'influx_timestamp': record.values['_time'].isoformat(),  # Convert InfluxDB timestamp to ISO format string
-                    'elastic_timestamp': elasticsearch_timestamp,  # Include the Elasticsearch timestamp
-                })
+                    'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
+                    'agent_host': agent_host,
+                    'influx_timestamp': record.values['_time'].isoformat(),
+                    'elastic_timestamp': elasticsearch_timestamp,
+                }
+                # Print the data before caching and confirmation
+                print("Data Submitted for Confirmation:")
+                print(json.dumps(data_entry, indent=4))
+
+                # Cache the new data entry in Redis
+                cache_data(bucket, serial_number, data_entry)
+                # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
+                confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+
+                if confirmation_data:
+                    # Process the confirmation data (e.g., print or save it)
+                    print("ONU Confirmation Data:", confirmation_data)
+                else:
+                    print("ONU confirmation failed or encountered an error.")
 
     # Initialize the Elasticsearch client
     es_host = os.getenv('ELASTICSEARCH_HOST')
@@ -79,20 +103,20 @@ def get_onu_status(bucket):
         documents = []
         for entry in data:
             document = {
+                'bucket': entry['bucket'],
                 'ifDescr': entry['ifDescr'],
                 'serialNumber': entry['serialNumber'],
                 'ifOperStatus': entry['ifOperStatus'],
-                'influx_timestamp': entry['influx_timestamp'],  # Include the InfluxDB timestamp
-                'elastic_timestamp': entry['elastic_timestamp'],  # Include the Elasticsearch timestamp
+                'agent_host': entry['agent_host'],
+                'influx_timestamp': entry['influx_timestamp'],
+                'elastic_timestamp': entry['elastic_timestamp'],
             }
-            json_document = json.dumps(document)  # Convert the document to a JSON string
+            json_document = json.dumps(document)
             documents.append(json_document)
 
-        # Use the Elasticsearch bulk API to write the documents to Elasticsearch in batches
         bulk(es, documents, index=elasticsearch_index)
 
-    return data
-
+    return 
 # Celery schedule
 app.conf.beat_schedule = {
     'STNBucket-STN-FIBER-every-30-seconds': {
@@ -107,4 +131,7 @@ app.conf.beat_schedule = {
     },
     # Add more schedules for other buckets
 }
+
+if __name__ == "__main__":
+    app.start()
 
