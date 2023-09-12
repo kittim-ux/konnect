@@ -9,6 +9,7 @@ from elasticsearch.helpers import bulk
 from datetime import datetime
 from redcache import cache_data, get_cached_data
 from onu_confirmation import confirm_onu  # Import the confirm_onu function
+from offline_alerts import onu_offline
 from utils import extract_gpon_port, extract_olt_number
 logging.basicConfig(level=logging.DEBUG)
 
@@ -24,12 +25,20 @@ org = 'techops_monitor'
 BUCKET_HOST_MAP = {
     'STNBucket': 'STN-FIBER',
     'MWKs': 'MWKs-FIBER',
+    'MWKn': 'MWKn-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
 BUCKET_INDEX_MAP = {
     'STNBucket': 'stnbucket',
     'MWKs': 'mwks',
+    'MWKn': 'mwkn'
+}
+BUCKET_REGION_MAP = {
+    'STNBucket': 'stn',
+    'MWKs': 'mwks',
+    'MWKn': 'mwkn',
+    # Add more mappings as needed
 }
 
 @app.task(name='onu_status_task')
@@ -49,7 +58,7 @@ def get_onu_status(bucket):
 
     data = []
     for table in results:
-     for record in table.records:
+      for record in table.records:
         serial_number = record.values.get("serialNumber", None)
         if serial_number:
             if_descr = record.values.get("ifDescr", "N/A")
@@ -61,33 +70,49 @@ def get_onu_status(bucket):
             # Check if data is cached
             cached_data = get_cached_data(bucket, serial_number)
 
-            if not cached_data and if_oper_status == 1:
-                # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
-                elasticsearch_timestamp = datetime.utcnow().isoformat()
-                data_entry = {
-                    'bucket': bucket,
-                    'ifDescr': if_descr,
-                    'serialNumber': serial_number,
-                    'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
-                    'agent_host': agent_host,
-                    'influx_timestamp': record.values['_time'].isoformat(),
-                    'elastic_timestamp': elasticsearch_timestamp,
-                }
-                # Print the data before caching and confirmation
-                print("Data Submitted for Confirmation:")
-                print(json.dumps(data_entry, indent=4))
-
-                # Cache the new data entry in Redis
-                cache_data(bucket, serial_number, data_entry)
-                # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
-                confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
-
-                if confirmation_data:
-                    # Process the confirmation data (e.g., print or save it)
-                    print("ONU Confirmation Data:", confirmation_data)
-                else:
-                    print("ONU confirmation failed or encountered an error.")
-
+            if not cached_data:
+               elasticsearch_timestamp = datetime.utcnow().isoformat()
+               data_entry = {
+                   'bucket': bucket,
+                   'ifDescr': if_descr,
+                   'serialNumber': serial_number,
+                   'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
+                   'agent_host': agent_host,
+                   'influx_timestamp': record.values['_time'].isoformat(),
+                   'elastic_timestamp': elasticsearch_timestamp,
+               }
+               # Print the data before caching
+               print("Data Submitted:")
+               print(json.dumps(data_entry, indent=4))
+           
+               if if_oper_status == 1:
+                   # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
+                   # Cache the new data entry in Redis
+                   cache_data(bucket, serial_number, data_entry)
+                   # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
+                   confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+           
+                   if confirmation_data:
+                       # Process the confirmation data (e.g., print or save it)
+                       print("ONU Confirmation Data:", confirmation_data)
+                   else:
+                       print("ONU confirmation failed or encountered an error.")
+               elif if_oper_status == 2:
+                   # Data is not cached, and ifOperStatus is 2 (OFFLINE), proceed to cache and alert
+                   # Cache the new data entry in Redis
+                   # cache_data(bucket, serial_number, data_entry)
+                   # Alert that the ONU is offline using your alerting module
+                   # Determine the region_name based on the bucket parameter
+                   region_name = BUCKET_REGION_MAP.get(bucket, 'unknown')
+                   offline_onu = onu_offline(serial_number, region_name)
+                   if offline_onu:
+                       # Process the confirmation data (e.g., print or save it)
+                       print("ONU Failed Confirmation:", offline_onu)
+                   else:
+                       print("ONU confirmation failed or encountered an error.")
+           
+           
+           
     # Initialize the Elasticsearch client
     es_host = os.getenv('ELASTICSEARCH_HOST')
     es_port = int(os.getenv('ELASTICSEARCH_PORT'))
@@ -129,6 +154,12 @@ app.conf.beat_schedule = {
         'schedule': 60.0,
         'args': ('MWKs',),
     },
+    'MWKn-MWKsn-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 60.0,
+        'args': ('MWKn',),
+    },
+    # Add more schedules for other buckets
     # Add more schedules for other buckets
 }
 
