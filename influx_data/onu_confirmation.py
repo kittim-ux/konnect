@@ -37,4 +37,3 @@ def confirm_onu(serial_code, olt_number, gpon_port):
 
 
 
-

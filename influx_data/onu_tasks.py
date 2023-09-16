@@ -7,7 +7,7 @@ import logging
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 from datetime import datetime
-from redcache import cache_data, get_cached_data
+from redcache import cache_data, get_cached_data, not_confirmed
 from onu_confirmation import confirm_onu  # Import the confirm_onu function
 from offline_alerts import onu_offline
 from utils import extract_gpon_port, extract_olt_number
@@ -88,14 +88,17 @@ def get_onu_status(bucket):
                if if_oper_status == 1:
                    # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
                    # Cache the new data entry in Redis
-                   cache_data(bucket, serial_number, data_entry)
+                   #cache_data(bucket, serial_number, data_entry)
                    # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
                    confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
            
                    if confirmation_data:
                        # Process the confirmation data (e.g., print or save it)
-                       print("ONU Confirmation Data:", confirmation_data)
+                       cache_data(bucket, serial_number, data_entry)
                    else:
+                       #Add the data and make it valid for 5 mins
+                       not_confirmed(bucket, serial_number, data_entry)
+
                        print("ONU confirmation failed or encountered an error.")
                elif if_oper_status == 2:
                    # Data is not cached, and ifOperStatus is 2 (OFFLINE), proceed to cache and alert
@@ -146,12 +149,12 @@ def get_onu_status(bucket):
 app.conf.beat_schedule = {
     'STNBucket-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 120.0,
         'args': ('STNBucket',),
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 90.0,
         'args': ('MWKs',),
     },
     'MWKn-MWKsn-FIBER-every-30-seconds': {
@@ -165,4 +168,3 @@ app.conf.beat_schedule = {
 
 if __name__ == "__main__":
     app.start()
-

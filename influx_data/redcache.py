@@ -2,6 +2,7 @@ import os
 import json
 from redis import Redis
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # Initialize the Redis client
 load_dotenv()
@@ -10,11 +11,20 @@ REDIS_PORT = os.getenv('redis_port')
 REDIS_DB = os.getenv('redis_db')
 redis_client = Redis(host=REDIS_HOST, port=int(REDIS_PORT), db=int(REDIS_DB))
 
-def cache_data(bucket, serial_number, data):
+def cache_data(bucket, serial_number, data, duration=None):
     # Create a cache key based on bucket and serial_number
     cache_key = f"{bucket}_{serial_number}"
     # Serialize and cache the data in Redis
-    redis_client.setex(cache_key, 60 * 60 * 24 * 365, json.dumps(data))
+    if duration:
+        # If a duration is specified, use it to set an expiration time for the cache
+        redis_client.setex(cache_key, duration, json.dumps(data))
+    else:
+        # If no duration is specified, cache the data indefinitely (existing behavior)
+        redis_client.set(cache_key, json.dumps(data))
+
+def not_confirmed(bucket, serial_number, data_entry):
+    # Call the cache_data function with a 5-minute duration (10800 seconds)
+    cache_data(bucket, serial_number, data_entry, duration=10800)
 
 def get_cached_data(bucket, serial_number):
     # Create a cache key based on bucket and serial_number
@@ -44,7 +54,6 @@ def get_all_cached_data():
 
     return cached_data
 
-
 def view_cached_data():
     # Call the function to get all cached data
     all_cached_data = get_all_cached_data()
@@ -58,7 +67,6 @@ def view_cached_data():
 # Example usage:
 if __name__ == "__main__":
     view_cached_data()  # Uncomment this line to view cached data from the same script
-
 
 
 
