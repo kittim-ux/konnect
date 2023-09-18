@@ -26,18 +26,21 @@ BUCKET_HOST_MAP = {
     'STNBucket': 'STN-FIBER',
     'MWKs': 'MWKs-FIBER',
     'MWKn': 'MWKn-FIBER',
+    'KWDBucket': 'KWD-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
 BUCKET_INDEX_MAP = {
     'STNBucket': 'stnbucket',
     'MWKs': 'mwks',
-    'MWKn': 'mwkn'
+    'MWKn': 'mwkn',
+    'KWDBucket': 'kwd'
 }
 BUCKET_REGION_MAP = {
     'STNBucket': 'stn',
     'MWKs': 'mwks',
     'MWKn': 'mwkn',
+    'KWDBucket': 'kwd'
     # Add more mappings as needed
 }
 
@@ -157,10 +160,15 @@ app.conf.beat_schedule = {
         'schedule': 90.0,
         'args': ('MWKs',),
     },
-    'MWKn-MWKsn-FIBER-every-30-seconds': {
+    'MWKn-MWKn-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 80.0,
+        'args': ('MWKn',),
+    },
+    'KWDBucket-KWD-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
         'schedule': 60.0,
-        'args': ('MWKn',),
+        'args': ('KWDBucket',),
     },
     # Add more schedules for other buckets
     # Add more schedules for other buckets
