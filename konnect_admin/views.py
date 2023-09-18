@@ -141,7 +141,7 @@ class InfluxBldgView(APIView):
         'g44bucket': {'csv_file': 'g44bldg.csv', 'bucket': 'g44bucket'},
         'zmmbucket': {'csv_file': 'zmmbldg.csv', 'bucket': 'zmmbucket'},
         'RMM': {'csv_file': 'rmmbldg.csv', 'bucket': 'RMM'},
-        'G45NBucket': {'csv_file': 'g45nbldg.csv', 'bucket': 'G45NBucket'},
+        'G45N1Bucket': {'csv_file': 'g45nbldg.csv', 'bucket': 'G45N1Bucket'},
         'G45SBucket': {'csv_file': 'g45sbldg.csv', 'bucket': 'G45SBucket'},
         'LsmBucket': {'csv_file': 'lsmbldg.csv', 'bucket': 'LsmBucket'},
         'htrbucket': {'csv_file': 'htrbldg.csv', 'bucket': 'htrbucket'},
@@ -152,7 +152,7 @@ class InfluxBldgView(APIView):
         'g44bucket': 'G44-FIBER',
         'zmmbucket': 'ZMM-FIBER',
         'RMM': 'ROY-FIBER',
-        'G45NBucket': 'G45N-FIBER',
+        'G45N1Bucket': 'G45N-FIBER',
         'G45SBucket': 'G45-FIBER',
         'LsmBucket': 'LSM-FIBER',
         'htrbucket': 'HTR-FIBER',
@@ -181,7 +181,7 @@ class InfluxBldgView(APIView):
 
         # Run the InfluxDB query only if the building name exists in the specified CSV file
         query_string = f"""from(bucket: "{bucket}")
-            |> range(start: -1m)
+            |> range(start: -7m)
             |> filter(fn: (r) => r["_measurement"] == "ping")
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
@@ -215,83 +215,3 @@ class InfluxBldgView(APIView):
         else:
             return self.off_bldg(bucket, building_name)
 
-#COLLECT DATA FROM INFLUX FOR ONU in the New model
-class NewModelView(APIView):
-    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
-    load_dotenv(dotenv_path=dotenv_path)
-    
-    BUCKET_HOST_MAP = {
-        'STNBucket': 'STN-FIBER',
-        'MWKs': 'MWKs-FIBER',
-        
-    }
-
-    token = os.getenv('token')
-    org = os.getenv('org')
-    url = os.getenv('url')
-
-    def get_onu_status(self, bucket):
-        query = f"""from(bucket: "{bucket}")
-            |> range(start: -1m)
-            |> filter(fn: (r) => r["_measurement"] == "interface")
-            |> filter(fn: (r) => r["_field"] == "ifOperStatus")
-            |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
-            |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
-            |> yield(name: "mean")"""
-
-        influx_client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-        results = influx_client.query_api().query(org=self.org, query=query)
-
-        data = []
-        for table in results:
-            for record in table.records:
-                serial_number = record.values.get("serialNumber", None)
-                if serial_number:
-                    data.append({
-                        'ifDescr': record.values["ifDescr"],
-                        'serialNumber': serial_number,
-                        'ifOperStatus': record.get_value(),
-                    })
-        return data
-
-    def get(self, request):
-        bucket = request.query_params.get('bucket', None)
-  
-        if not bucket:
-            return JsonResponse({"error": "Bucket parameter is required"})
-        
-        try:
-            onu_status = self.get_onu_status(bucket)
-            return JsonResponse(onu_status, safe=False)
-        except Exception as e:
-            return JsonResponse({"error": str(e)})
-
-#Retrieve Data From The database 
-class ONUView(APIView):
-    def get(self, request):
-        # Find the most recent timestamp
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT MAX(timestamp) FROM sunton")
-            most_recent_timestamp = cursor.fetchone()[0]
-
-        # Execute your raw SQL query to retrieve the data with the most recent timestamp
-        query = """
-            SELECT ifDescr, serialNumber, ifOperStatus, timestamp
-            FROM sunton
-            WHERE timestamp = %s
-        """
-        with connection.cursor() as cursor:
-            cursor.execute(query, (most_recent_timestamp,))
-            data = cursor.fetchall()
-
-        # Format the fetched data into a list of dictionaries
-        formatted_data = []
-        for row in data:
-            formatted_data.append({
-                'ifDescr': row[0],
-                'serialNumber': row[1],
-                'ifOperStatus': row[2],
-                'timestamp': row[3].strftime('%Y-%m-%d %H:%M:%S')
-            })
-
-        return Response(formatted_data, status=status.HTTP_200_OK)
