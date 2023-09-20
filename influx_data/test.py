@@ -30,7 +30,7 @@ bucket_map = {
         'g44bldg': 'g44bucket',
         'zmmbldg': 'zmmbucket',
         'rmmbldg': 'RMM',
-        'g45nbldg': 'G45NBucket'
+        'g45nbldg': 'G45N1Bucket'
 }
 
 @app.task(name='all_buildings')
@@ -39,18 +39,25 @@ def all_buildings(bucket, host, webhook_url):
     with open(os.path.join(dataset_dir, f"{bucket}.csv"), "r") as f:
         reader = csv.reader(f)
         headers = next(reader)
-        names = [row[0] for row in reader]
-    
+        names = []
+
+        for row in reader:
+            try:
+                name = row[0]
+                names.append(name)
+            except IndexError:
+                # Handle the case where the row doesn't have enough elements
+                pass
 
     all_results = []
     for name in names:
         query_string = f"""from(bucket: "{bucket_map[bucket]}")
-            |> range(start: -1m)
+            |> range(start: -10m)
             |> filter(fn: (r) => r["_measurement"] == "ping")
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{host}")
             |> filter(fn: (r) => r["name"] == "{name}")
-            |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
+            |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
         results = influx_client.query_api().query(query_string)
         data = []
@@ -64,12 +71,11 @@ def all_buildings(bucket, host, webhook_url):
                         'measurement': record.get_measurement()
                     })
         all_results += data
-        
+
     with open("data.json", "w") as file:
         file.write(json.dumps(all_results, indent=4))
 
     return all_results
-
 app.conf.beat_schedule = {
     'kwtbucket-kwt-fiber-every-30-seconds': {
         'task': 'all_buildings',
@@ -86,11 +92,11 @@ app.conf.beat_schedule = {
         'args': ('g44bldg', 'G44-FIBER'),
         'args': ('g44bldg', 'G44-FIBER', webhook_url),
     },
-   'zmmbucket-zmm-fiber-every-30-seconds': {
+     'zmmbucket-zmm-fiber-every-30-seconds': {
         'task': 'all_buildings',
         'schedule': 30.0,
         'args': ('zmmbldg', 'ZMM-FIBER', webhook_url),
-
+#
     },
     'rmm-roy-fiber-every-30-seconds': {
         'task': 'all_buildings',

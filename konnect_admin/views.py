@@ -17,7 +17,8 @@ from django.http import JsonResponse
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from rest_framework.views import APIView
-
+from .influx_utils import off_bldg
+from .tasks import lark_post
 #Dispaly TVs' Data. 
 class ConnectedTVsListView(generics.ListAPIView):
     queryset = ConnectedTVs.objects.all()
@@ -57,80 +58,14 @@ class ConnectedTVsDetailView(generics.RetrieveAPIView):
 
 #COLLECT ALL BUILDINGS DATA FROM INFLUX
 class InfluxDataView(APIView):
-    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
-    load_dotenv(dotenv_path=dotenv_path)
-    
-    
-    CSV_BUCKET_MAP = {
-            'kwtbucket': 'kwtbldg.csv',
-            'g44bucket': 'g44bldg.csv',
-            'zmmbucket': 'zmmbldg.csv',
-            'RMM': 'rmmbldg.csv',
-            'G45NBucket': 'g45nbldg.csv',
-            'G45SBucket': 'g45sbldg.csv',
-            'LsmBucket': 'lsmbldg.csv',
-            'htrbucket': 'htrbldg.csv',
-        }
-    BUCKET_HOST_MAP = {
-            'kwtbucket': 'KWT-FIBER',
-            'g44bucket': 'G44-FIBER',
-            'zmmbucket': 'ZMM-FIBER',
-            'RMM': 'ROY-FIBER',
-            'G45SBucket': 'G45-FIBER',
-            'G45NBucket': 'G45N-FIBER',
-            'LsmBucket': 'LSM-FIBER',
-            'htrbucket': 'HTR-FIBER',
-            
-        }
-    token = os.getenv('token')
-    org = os.getenv('org')
-    url = os.getenv('url')
-
-    def off_bldg(self, bucket, token=token, org=org, url=url): 
-        influx_client = InfluxDBClient(url=url, token=token, org=org)
-        
-
-        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
-        
-
-        with open(os.path.join(dataset_dir, self.CSV_BUCKET_MAP[bucket]), "r") as f:
-            reader = csv.reader(f)
-            headers = next(reader)
-            names = [row[0] for row in reader]
-
-        all_results = []
-        for name in names:
-            query_string = f"""from(bucket: "{bucket}")
-                |> range(start: -1m)
-                |> filter(fn: (r) => r["_measurement"] == "ping")
-                |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
-                |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
-                |> filter(fn: (r) => r["name"] == "{name}")
-                |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
-                |> yield(name: "mean")"""
-            results = influx_client.query_api().query(query_string)
-            
-            data = []
-            for table in results:
-                for record in table.records:
-                    if record.get_value() == 100:
-                        data.append({
-                            'name': record.values["name"],
-                            'value': record.get_value(),
-                            'field': record.get_field(),
-                            'measurement': record.get_measurement()
-                        })
-            all_results += data
-        return all_results
-
     def get(self, request):
         bucket = request.query_params.get('bucket', None)
         if not bucket:
             return JsonResponse({"error": "Data not defined yet"})
         else:
-            all_results = self.off_bldg(bucket)
-            return JsonResponse(all_results, safe=False)
-
+            result = lark_post.delay(bucket)
+            return JsonResponse({"task_id": result.id}, safe=False)
+        
 #COLLECT DATA FOR A SINGLE BUILDING 
 class InfluxBldgView(APIView):
     dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
@@ -186,7 +121,7 @@ class InfluxBldgView(APIView):
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{self.BUCKET_HOST_MAP[bucket]}")
             |> filter(fn: (r) => r["name"] == "{building_name}")
-            |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
+            |> aggregateWindow(every: 7m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
 
         influx_client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
