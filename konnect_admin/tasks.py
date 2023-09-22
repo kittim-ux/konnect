@@ -1,5 +1,6 @@
 from celery import shared_task
 from .influx_utils import off_bldg
+from .cache_bldgs import is_data_sent, cache_data
 import json
 import requests
 from django.conf import settings
@@ -24,19 +25,33 @@ def lark_post(bucket_name):
     # Get the label associated with the bucket name from the mapping dictionary
     label = settings.LARK_BUCKET_LABELS.get(bucket_name, 'Unknown Bucket')
 
-    # Add the names to the unique set for the current bucket
-    unique_names_sets[bucket_name].update(names)
+    # Accumulate building names in a list
+    names_to_send = []
+
+    for name in names:
+        # Check if data for this building name has already been sent
+        if not is_data_sent(name):
+            # Add the name to the list of names to send
+            names_to_send.append(name)
+
+            # Cache the building name
+            cache_data(name)
+
+            # Add the name to the unique set for the current bucket
+            unique_names_sets[bucket_name].add(name)
+
+    # Check if there is data to send
+    if names_to_send:
+        # Prepare the message text with comma-separated names
+        message = ", ".join(names_to_send)
+
+        # Send the message to the Lark webhook with the dynamic title
+        send_lark_alert(message, label)  # Pass 'label' as an argument
 
     # Print the collected 'name' values and label for verification
     print("Collected 'name' values:")
     print(unique_names_sets[bucket_name])
     print("Label:", label)
-
-    # Prepare the message text
-    message = f"{', '.join(unique_names_sets[bucket_name])}"  # Add two newlines for separation
-
-    # Send the message to the Lark webhook
-    send_lark_alert(message, label)  # Pass 'label' as an argument
 
 
 def send_lark_alert(message, label):
@@ -51,7 +66,7 @@ def send_lark_alert(message, label):
         "content": {
             "post": {
                 "en_us": {
-                    "title": label,
+                    "title":label, 
                     "content": [
                         [
                             {
@@ -66,13 +81,9 @@ def send_lark_alert(message, label):
     }
 
     try:
-        response = requests.post(webhook_url, json=payload, headers=headers)
-
-        if response.status_code == 200:
-            print("Data sent to Lark successfully!")
-        else:
-            print(f"Failed to send data to Lark. Status code: {response.status_code}")
-
+        # Send the message to the Lark webhook
+        response = requests.post(webhook_url, headers=headers, json=payload)
+        response.raise_for_status()
+        print("Lark alert sent successfully")
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred while sending the data: {e}")
-
+        print("Failed to send Lark alert:", e)

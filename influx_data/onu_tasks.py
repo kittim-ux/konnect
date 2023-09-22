@@ -61,63 +61,57 @@ def get_onu_status(bucket):
 
     data = []
     for table in results:
-      for record in table.records:
-        serial_number = record.values.get("serialNumber", None)
-        if serial_number:
-            if_descr = record.values.get("ifDescr", "N/A")
-            agent_host = record.values.get("agent_host", "N/A")
-            gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
-            olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
-            if_oper_status = record["_value"]  # Access the value of ifOperStatus
+        for record in table.records:
+            serial_number = record.values.get("serialNumber", None)
+            if serial_number:
+                if_descr = record.values.get("ifDescr", "N/A")
+                agent_host = record.values.get("agent_host", "N/A")
+                gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
+                olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
+                if_oper_status = record["_value"]  # Access the value of ifOperStatus
 
-            # Check if data is cached
-            cached_data = get_cached_data(bucket, serial_number)
+                # Check if data is cached
+                cached_data = get_cached_data(bucket, serial_number)
 
-            if not cached_data:
-               elasticsearch_timestamp = datetime.utcnow().isoformat()
-               data_entry = {
-                   'bucket': bucket,
-                   'ifDescr': if_descr,
-                   'serialNumber': serial_number,
-                   'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
-                   'agent_host': agent_host,
-                   'influx_timestamp': record.values['_time'].isoformat(),
-                   'elastic_timestamp': elasticsearch_timestamp,
-               }
-               # Print the data before caching
-               print("Data Submitted:")
-               print(json.dumps(data_entry, indent=4))
-           
-               if if_oper_status == 1:
-                   # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
-                   # Cache the new data entry in Redis
-                   #cache_data(bucket, serial_number, data_entry)
-                   # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
-                   confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
-           
-                   if confirmation_data:
-                       # Process the confirmation data (e.g., print or save it)
-                       cache_data(bucket, serial_number, data_entry)
-                   else:
-                       #Add the data and make it valid for 5 mins
-                       not_confirmed(bucket, serial_number, data_entry)
+                if not cached_data:
+                    elasticsearch_timestamp = datetime.utcnow().isoformat()
+                    data_entry = {
+                        'bucket': bucket,
+                        'ifDescr': if_descr,
+                        'serialNumber': serial_number,
+                        'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
+                        'agent_host': agent_host,
+                        'influx_timestamp': record.values['_time'].isoformat(),
+                        'elastic_timestamp': elasticsearch_timestamp,
+                    }
+                    # Print the data before caching
+                    print("Data Submitted:")
+                    print(json.dumps(data_entry, indent=4))
 
-                       print("ONU confirmation failed or encountered an error.")
-               elif if_oper_status == 2:
-                   # Data is not cached, and ifOperStatus is 2 (OFFLINE), proceed to cache and alert
-                   # Cache the new data entry in Redis
-                   # cache_data(bucket, serial_number, data_entry)
-                   # Alert that the ONU is offline using your alerting module
-                   # Determine the region_name based on the bucket parameter
-                   region_name = BUCKET_REGION_MAP.get(bucket, 'unknown')
-                   offline_onu = onu_offline(serial_number, region_name)
-                   if offline_onu:
-                       # Process the confirmation data (e.g., print or save it)
-                       print("ONU Failed Confirmation:", offline_onu)
-                   else:
-                       print("ONU confirmation failed or encountered an error.")
-           
-           
+                    if if_oper_status == 1:
+                        # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
+                        # Cache the new data entry in Redis
+                        # cache_data(bucket, serial_number, data_entry)
+                        # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
+                        confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+
+                        if confirmation_data:
+                            # Process the confirmation data (e.g., print or save it)
+                            cache_data(bucket, serial_number, data_entry)
+                        else:
+                            # Add the data and make it valid for 5 mins
+                            not_confirmed(bucket, serial_number, data_entry)
+
+                            print("ONU confirmation failed or encountered an error.")
+                    elif if_oper_status == 2:
+                        # Data is not cached, and ifOperStatus is 2 (OFFLINE), proceed to alert
+                        # Determine the region_name based on the bucket parameter
+                        region_name = BUCKET_REGION_MAP.get(bucket, 'unknown')
+                        onu_offline(serial_number, region_name)
+                        print("ONU Failed Confirmation:", offline_onu)
+                else:
+                    print("Data is already cached:", cached_data)
+
            
     # Initialize the Elasticsearch client
     es_host = os.getenv('ELASTICSEARCH_HOST')

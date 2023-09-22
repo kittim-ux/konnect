@@ -1,6 +1,7 @@
 import os
 import json
 from redis import Redis
+import redis
 from dotenv import load_dotenv
 from datetime import timedelta
 
@@ -64,9 +65,10 @@ def view_cached_data():
         print("Cached Data:")
         print(data)
 
-# Example usage:
+ #Initialize the Redis client
 if __name__ == "__main__":
-    view_cached_data()  # Uncomment this line to view cached data from the same script
+    view_cached_data()
+
 
 
 
