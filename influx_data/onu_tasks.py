@@ -23,24 +23,27 @@ org = 'techops_monitor'
 
 # MAP buckets with their respective data
 BUCKET_HOST_MAP = {
-    'STNBucket': 'STN-FIBER',
+    'STNOnu': 'STN-FIBER',
     'MWKs': 'MWKs-FIBER',
     'MWKn': 'MWKn-FIBER',
-    'KWDBucket': 'KWD-FIBER',
+    'KWDOnu': 'KWD-FIBER',
+    'KSNOnu': 'KSN-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
 BUCKET_INDEX_MAP = {
-    'STNBucket': 'stnbucket',
+    'STNOnu': 'stnbucket',
     'MWKs': 'mwks',
     'MWKn': 'mwkn',
-    'KWDBucket': 'kwd'
+    'KWDOnu': 'kwd',
+    'KSNOnu': 'ksn',
 }
 BUCKET_REGION_MAP = {
-    'STNBucket': 'stn',
+    'STNOnu': 'stn',
     'MWKs': 'mwks',
     'MWKn': 'mwkn',
-    'KWDBucket': 'kwd'
+    'KWDOnu': 'kwd',
+    'KSNOnu': 'ksn',
     # Add more mappings as needed
 }
 
@@ -98,6 +101,15 @@ def get_onu_status(bucket):
                         if confirmation_data:
                             # Process the confirmation data (e.g., print or save it)
                             cache_data(bucket, serial_number, data_entry)
+                            print(json.dumps({
+                                'bucket': bucket,
+                                'ifDescr': if_descr,
+                                'serialNumber': serial_number,
+                                'ifOperStatus': if_oper_status,
+                                'agent_host': agent_host,
+                                'gpon_port': gpon_port,
+                                'olt_number': olt_number
+                            }, indent=4))
                         else:
                             # Add the data and make it valid for 5 mins
                             not_confirmed(bucket, serial_number, data_entry)
@@ -108,9 +120,9 @@ def get_onu_status(bucket):
                         # Determine the region_name based on the bucket parameter
                         region_name = BUCKET_REGION_MAP.get(bucket, 'unknown')
                         onu_offline(serial_number, region_name)
-                        print("ONU Failed Confirmation:", offline_onu)
+                        print("ONU Failed Confirmation:", onu_offline)
                 else:
-                    print("Data is already cached:", cached_data)
+                    print("Nothing to confirm")
 
            
     # Initialize the Elasticsearch client
@@ -144,10 +156,10 @@ def get_onu_status(bucket):
     return 
 # Celery schedule
 app.conf.beat_schedule = {
-    'STNBucket-STN-FIBER-every-30-seconds': {
+    'STNOnu-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
         'schedule': 120.0,
-        'args': ('STNBucket',),
+        'args': ('STNOnu',),
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
@@ -159,10 +171,15 @@ app.conf.beat_schedule = {
         'schedule': 80.0,
         'args': ('MWKn',),
     },
-    'KWDBucket-KWD-FIBER-every-30-seconds': {
+    'KWDOnu-KWD-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 70.0,
+        'args': ('KWDOnu',),
+    },
+    'KSNOnu-KSN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
         'schedule': 60.0,
-        'args': ('KWDBucket',),
+        'args': ('KSNOnu',),
     },
     # Add more schedules for other buckets
     # Add more schedules for other buckets

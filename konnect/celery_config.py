@@ -4,33 +4,43 @@ CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_BEAT_SCHEDULE = {
     'check_and_alert_task_kwt': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 60,
+        'schedule': 1200,
         'args': ('kwtbucket',),
     },
     'check_and_alert_task_g44': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 70,
+        'schedule': 1210,
         'args': ('g44bucket',),
     },
     'check_and_alert_task_zmm': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 80,
+        'schedule': 1220,
         'args': ('zmmbucket',),
     },
     'check_and_alert_task_g45n': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 90,
+        'schedule': 1230,
         'args': ('G45N1Bucket',),
     },
     'check_and_alert_task_g45s': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 100,
+        'schedule': 1240,
         'args': ('G45SBucket',),
     },
     'check_and_alert_task_htr': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 110,
+        'schedule': 1250,
         'args': ('htrbucket',),
+    },
+    'check_and_alert_task_htr': {
+        'task': 'konnect_admin.tasks.lark_post',
+        'schedule': 1260,
+        'args': ('RMM',),
+    },
+    'check_and_alert_task_htr': {
+        'task': 'konnect_admin.tasks.lark_post',
+        'schedule': 1270,
+        'args': ('LsmBucket',),
     },
 }
 CELERY_ACCEPT_CONTENT = ['json']
@@ -46,5 +56,7 @@ LARK_BUCKET_LABELS = {
     'G45N1Bucket': 'Offline Buildings in G45N',
     'G45SBucket': 'Offline Buildings in G45S',
     'htrbucket': 'Offline Buildings in HTR',
+    'RMM': 'Offline Buildings in ROY',
+    'LsmBucket': 'Offline Buildings in LSM',
     # Add more mappings as needed
 }
