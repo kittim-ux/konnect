@@ -1,5 +1,6 @@
 import os
 import json
+import csv
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from celery import Celery
@@ -9,8 +10,10 @@ from elasticsearch.helpers import bulk
 from datetime import datetime
 from redcache import cache_data, get_cached_data, not_confirmed
 from onu_confirmation import confirm_onu  # Import the confirm_onu function
-from offline_alerts import onu_offline
+from gpon_monitoring.offline_alerts import onu_offline
 from utils import extract_gpon_port, extract_olt_number
+from gpon_monitoring.elastic_store import index_data
+from gpon_monitoring import fetch_data
 logging.basicConfig(level=logging.DEBUG)
 
 app = Celery('onu_tasks', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
@@ -63,124 +66,113 @@ def get_onu_status(bucket):
     print(f"Fetched {len(results)} records from {bucket}")
 
     data = []
-    for table in results:
-        for record in table.records:
-            serial_number = record.values.get("serialNumber", None)
-            if serial_number:
-                if_descr = record.values.get("ifDescr", "N/A")
-                agent_host = record.values.get("agent_host", "N/A")
-                gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
-                olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
-                if_oper_status = record["_value"]  # Access the value of ifOperStatus
+    # Open the CSV file in write mode and create a CSV writer
+    csv_file_path = 'offline_onu.csv'
+    with open(csv_file_path, mode='a', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-                # Check if data is cached
-                cached_data = get_cached_data(bucket, serial_number)
+        serial_numbers = []
+        for table in results:
+            for record in table.records:
+                serial_number = record.values.get("serialNumber", None)
+                if serial_number and record["_value"] == 2:  # Check if ifOperStatus is 2 (OFFLINE)
+                    # Write the serial number to the CSV file
+                    csv_writer.writerow([serial_number])
 
-                if not cached_data:
-                    elasticsearch_timestamp = datetime.utcnow().isoformat()
-                    data_entry = {
-                        'bucket': bucket,
-                        'ifDescr': if_descr,
-                        'serialNumber': serial_number,
-                        'ifOperStatus': if_oper_status,  # Include ifOperStatus in the data
-                        'agent_host': agent_host,
-                        'influx_timestamp': record.values['_time'].isoformat(),
-                        'elastic_timestamp': elasticsearch_timestamp,
-                    }
-                    # Print the data before caching
-                    print("Data Submitted:")
-                    print(json.dumps(data_entry, indent=4))
+                if serial_number:
+                    if_descr = record.values.get("ifDescr", "N/A")
+                    agent_host = record.values.get("agent_host", "N/A")
+                    gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
+                    olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
+                    if_oper_status = record["_value"]  # Access the value of ifOperStatus
+                    serial_numbers.append(serial_number)
 
-                    if if_oper_status == 1:
-                        # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
-                        # Cache the new data entry in Redis
-                        # cache_data(bucket, serial_number, data_entry)
-                        # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
-                        confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+        # After collecting all serial numbers, you can fetch region data
+        region = BUCKET_REGION_MAP.get(bucket, "N/A")
+        region_data = fetch_data.fetch_data(region, serial_numbers)  # Use fetch_data function
 
-                        if confirmation_data:
-                            # Process the confirmation data (e.g., print or save it)
-                            cache_data(bucket, serial_number, data_entry)
-                            print(json.dumps({
-                                'bucket': bucket,
-                                'ifDescr': if_descr,
-                                'serialNumber': serial_number,
-                                'ifOperStatus': if_oper_status,
-                                'agent_host': agent_host,
-                                'gpon_port': gpon_port,
-                                'olt_number': olt_number
-                            }, indent=4))
-                        else:
-                            # Add the data and make it valid for 5 mins
-                            not_confirmed(bucket, serial_number, data_entry)
+        for serial_number, building_data in region_data.items():
+            building_name = building_data.get('BuildingName', 'N/A')
+            print(f"Serial Number: {serial_number}, Building Name: {building_name}")  # Print the building_name
 
-                            print("ONU confirmation failed or encountered an error.")
-                    elif if_oper_status == 2:
-                        # Data is not cached, and ifOperStatus is 2 (OFFLINE), proceed to alert
-                        # Determine the region_name based on the bucket parameter
-                        region_name = BUCKET_REGION_MAP.get(bucket, 'unknown')
-                        onu_offline(serial_number, region_name)
-                        print("ONU Failed Confirmation:", onu_offline)
-                else:
-                    print("Nothing to confirm")
-
-           
-    # Initialize the Elasticsearch client
-    es_host = os.getenv('ELASTICSEARCH_HOST')
-    es_port = int(os.getenv('ELASTICSEARCH_PORT'))
-    es_scheme = os.getenv('ELASTICSEARCH_SCHEME')
-
-    es = Elasticsearch([{'host': es_host, 'port': es_port, 'scheme': es_scheme}])
-
-    # Get the Elasticsearch index name based on the bucket name
-    elasticsearch_index = BUCKET_INDEX_MAP.get(bucket, None)
-
-    if elasticsearch_index:
-        # Index the data into Elasticsearch with the dynamically determined index name
-        documents = []
-        for entry in data:
-            document = {
-                'bucket': entry['bucket'],
-                'ifDescr': entry['ifDescr'],
-                'serialNumber': entry['serialNumber'],
-                'ifOperStatus': entry['ifOperStatus'],
-                'agent_host': entry['agent_host'],
-                'influx_timestamp': entry['influx_timestamp'],
-                'elastic_timestamp': entry['elastic_timestamp'],
+            # Create the data entry dictionary for this record
+            data_entry = {
+                'region': region,
+                'ifDescr': if_descr,
+                'serialNumber': serial_number,
+                'ifOperStatus': if_oper_status,
+                'building_name': building_name,
+                'agent_host': agent_host,
+                'influx_timestamp': record.values['_time'].isoformat(),
+                'elastic_timestamp': datetime.utcnow().isoformat(),
             }
-            json_document = json.dumps(document)
-            documents.append(json_document)
+            # Append the data entry to the list of all data entries
+            data.append(data_entry)
+            # Check if data is cached
+            cached_data = get_cached_data(bucket, serial_number)
 
-        bulk(es, documents, index=elasticsearch_index)
+            if not cached_data:
+                # Print the data before caching
+                print("Data Missing in the Cache")
+                print(json.dumps(data_entry, indent=4))
 
-    return 
-# Celery schedule
+                if if_oper_status == 1:
+                    # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
+                    # Cache the new data entry in Redis
+                    # cache_data(bucket, serial_number, data_entry)
+                    # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
+                    confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+                    if confirmation_data:
+                        # Process the confirmation data (e.g., print or save it)
+                        cache_data(bucket, serial_number, data_entry)
+                        print(json.dumps({
+                            'bucket': bucket,
+                            'ifDescr': if_descr,
+                            'serialNumber': serial_number,
+                            'ifOperStatus': if_oper_status,
+                            'agent_host': agent_host,
+                            'gpon_port': gpon_port,
+                            'olt_number': olt_number
+                        }, indent=4))
+                    else:
+                        # Handle failed confirmation
+                        #not_confirmed(bucket, serial_number, data_entry)
+                        #print("ONU confirmation failed or encountered an error.")
+                        csv_writer.writerow([serial_number])
+                        #print(serial_number)
+        # Index the data into Elasticsearch
+        index_data(bucket, data)
+        total_data = len(data)
+        print(f"Total Records indexed: {total_data}")
+
+    return  
+# Ce#lery schedule
 app.conf.beat_schedule = {
     'STNOnu-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 120.0,
+        'schedule': 60.0,
         'args': ('STNOnu',),
     },
-    'MWKs-MWKs-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 90.0,
-        'args': ('MWKs',),
-    },
-    'MWKn-MWKn-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 80.0,
-        'args': ('MWKn',),
-    },
-    'KWDOnu-KWD-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 70.0,
-        'args': ('KWDOnu',),
-    },
-    'KSNOnu-KSN-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 60.0,
-        'args': ('KSNOnu',),
-    },
+    #'MWKs-MWKs-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 70.0,
+    #    'args': ('MWKs',),
+    #},
+    #'MWKn-MWKn-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 80.0,
+    #    'args': ('MWKn',),
+    #},
+    #'KWDOnu-KWD-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 90.0,
+    #    'args': ('KWDOnu',),
+    #},
+    #'KSNOnu-KSN-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 100.0,
+    #    'args': ('KSNOnu',),
+    #},
     # Add more schedules for other buckets
     # Add more schedules for other buckets
 }
