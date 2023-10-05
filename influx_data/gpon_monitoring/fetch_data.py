@@ -28,3 +28,4 @@ def fetch_data(region, serial_numbers):
 
 
 
+

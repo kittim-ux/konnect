@@ -5,10 +5,8 @@ from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from celery import Celery
 import logging
-from elasticsearch import Elasticsearch
-from elasticsearch.helpers import bulk
 from datetime import datetime
-from redcache import cache_data, get_cached_data, not_confirmed
+from redcache import cache_data, get_cached_data
 from onu_confirmation import confirm_onu  # Import the confirm_onu function
 from gpon_monitoring.offline_alerts import onu_offline
 from utils import extract_gpon_port, extract_olt_number
@@ -57,7 +55,7 @@ def get_onu_status(bucket):
         |> filter(fn: (r) => r["_measurement"] == "interface")
         |> filter(fn: (r) => r["_field"] == "ifOperStatus")
         |> filter(fn: (r) => r["host"] == "{BUCKET_HOST_MAP[bucket]}")
-        |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+        |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
         |> yield(name: "mean")"""
     print(f"Fetching data from {bucket}...")
 
@@ -80,6 +78,7 @@ def get_onu_status(bucket):
                     csv_writer.writerow([serial_number])
 
                 if serial_number:
+                    serial_number = serial_number.replace("Ahdi:", "BDCM:")
                     if_descr = record.values.get("ifDescr", "N/A")
                     agent_host = record.values.get("agent_host", "N/A")
                     gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
@@ -150,29 +149,29 @@ def get_onu_status(bucket):
 app.conf.beat_schedule = {
     'STNOnu-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 70.0,
         'args': ('STNOnu',),
     },
-    #'MWKs-MWKs-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 70.0,
-    #    'args': ('MWKs',),
-    #},
-    #'MWKn-MWKn-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 80.0,
-    #    'args': ('MWKn',),
-    #},
-    #'KWDOnu-KWD-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 90.0,
-    #    'args': ('KWDOnu',),
-    #},
-    #'KSNOnu-KSN-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 100.0,
-    #    'args': ('KSNOnu',),
-    #},
+    'MWKs-MWKs-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 80.0,
+        'args': ('MWKs',),
+    },
+    'MWKn-MWKn-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 90.0,
+        'args': ('MWKn',),
+    },
+    'KWDOnu-KWD-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 95.0,
+        'args': ('KWDOnu',),
+    },
+    'KSNOnu-KSN-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 100.0,
+        'args': ('KSNOnu',),
+    },
     # Add more schedules for other buckets
     # Add more schedules for other buckets
 }

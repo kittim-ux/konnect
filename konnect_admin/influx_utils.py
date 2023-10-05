@@ -29,6 +29,10 @@ BUCKET_HOST_MAP = {
     'G45N1Bucket': 'G45N-FIBER',
     'LsmBucket': 'LSM-FIBER',
     'htrbucket': 'HTR-FIBER',
+    'STNOnu':'STN-FIBER',
+    'KWDOnu': 'KWD-FIBER',
+    'MWKn': 'MWKn-FIBER',
+    'KSNOnu': 'KSN-FIBER',
 }
 
 def off_bldg(bucket):
@@ -39,21 +43,74 @@ def off_bldg(bucket):
 
     client = InfluxDBClient(url=url, token=token, org=org)
 
-    with open(os.path.join(dataset_dir, CSV_BUCKET_MAP.get(bucket, '')), "r") as f:
-        reader = csv.reader(f)
-        headers = next(reader)
-        names = [row[0] for row in reader if len(row) > 0]  # Filter out empty rows
+    if bucket in CSV_BUCKET_MAP:
+        # Handle non-PoP-specific bucket names
+        csv_file = CSV_BUCKET_MAP[bucket]
+        with open(os.path.join(dataset_dir, csv_file), "r") as f:
+            reader = csv.reader(f)
+            headers = next(reader)
+            names = [row[0] for row in reader if len(row) > 0]  # Filter out empty rows
+    
+        all_results = []
+        for name in names:
+            query_string = f"""from(bucket: "{bucket}")
+                |> range(start: -10m)
+                |> filter(fn: (r) => r["_measurement"] == "ping")
+                |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
+                |> filter(fn: (r) => r["host"] == "{BUCKET_HOST_MAP.get(bucket, '')}")
+                |> filter(fn: (r) => r["name"] == "{name}")
+                |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)
+                |> yield(name: "mean")"""
+            results = client.query_api().query(query_string)
+    
+            data = []
+            for table in results:
+                for record in table.records:
+                    if record.get_value() == 100:
+                        data.append({
+                            'name': record.values.get("name", ''),
+                            'value': record.get_value(),
+                            'field': record.get_field(),
+                            'measurement': record.get_measurement()
+                        })
+            all_results += data
+        return all_results
+    else:
+        return []
 
-    all_results = []
-    for name in names:
+def pop_monitor(bucket):
+    token = os.getenv('token')
+    org = os.getenv('org')
+    url = os.getenv('url')
+
+    client = InfluxDBClient(url=url, token=token, org=org)
+    # Handle PoP-specific bucket names
+    POP_BUCKET_MAPPING = {
+        'g44bucket': 'Sonic PoP G44',
+        'zmmbucket': 'Gardenia PoP ZMM',
+        'LsmBucket': 'LSM PoP',
+        'G45SBucket': 'Charis PoP G45S',
+        'STNOnu':'STN PoP',
+        'KWDOnu': 'KWD PoP',
+        'MWKn': 'MWKn PoP',
+        'KSNOnu': 'KSN PoP',
+
+
+    }
+    if bucket in POP_BUCKET_MAPPING:
+        # Handle PoP-specific bucket names
+        pop_name = POP_BUCKET_MAPPING[bucket]
+
         query_string = f"""from(bucket: "{bucket}")
             |> range(start: -10m)
             |> filter(fn: (r) => r["_measurement"] == "ping")
             |> filter(fn: (r) => r["_field"] == "percent_packet_loss")
             |> filter(fn: (r) => r["host"] == "{BUCKET_HOST_MAP.get(bucket, '')}")
-            |> filter(fn: (r) => r["name"] == "{name}")
+            |> filter(fn: (r) => r["name"] == "{pop_name}")
             |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)
             |> yield(name: "mean")"""
+
+        client = InfluxDBClient(url=url, token=token, org=org)
         results = client.query_api().query(query_string)
 
         data = []
@@ -66,5 +123,7 @@ def off_bldg(bucket):
                         'field': record.get_field(),
                         'measurement': record.get_measurement()
                     })
-        all_results += data
-    return all_results
+        return data  # Return data for PoP-specific buckets
+    else:
+        return []
+

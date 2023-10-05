@@ -34,10 +34,11 @@ def index_data(bucket, data):
                 # Validate data before indexing (e.g., check required fields)
 
                 document = {
-                    'bucket': entry['bucket'],
+                    'region': entry['region'],
                     'ifDescr': entry['ifDescr'],
                     'serialNumber': entry['serialNumber'],
                     'ifOperStatus': entry['ifOperStatus'],
+                    'building_name': entry['building_name'],
                     'agent_host': entry['agent_host'],
                     'influx_timestamp': entry['influx_timestamp'],
                     'elastic_timestamp': entry['elastic_timestamp'],

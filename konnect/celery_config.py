@@ -4,7 +4,7 @@ CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_BEAT_SCHEDULE = {
     'check_and_alert_task_kwt': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 1200,
+        'schedule': 120,
         'args': ('kwtbucket',),
     },
     'check_and_alert_task_g44': {
@@ -29,18 +29,59 @@ CELERY_BEAT_SCHEDULE = {
     },
     'check_and_alert_task_htr': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 1250,
+        'schedule':1250,
         'args': ('htrbucket',),
     },
-    'check_and_alert_task_htr': {
+    'check_and_alert_task_rmm': {
         'task': 'konnect_admin.tasks.lark_post',
         'schedule': 1260,
         'args': ('RMM',),
     },
-    'check_and_alert_task_htr': {
+    'check_and_alert_task_lsm': {
         'task': 'konnect_admin.tasks.lark_post',
         'schedule': 1270,
         'args': ('LsmBucket',),
+    },
+    ###PoP Power Monitoring Tasks
+    'check_and_alert_task_lsmp': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 35, 
+        'args': ('LsmBucket',),
+    },
+    'check_and_alert_task_zmmp': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 40,
+        'args': ('zmmbucket',),
+    },
+    'check_and_alert_task_g44p': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 45,
+        'args': ('g44bucket',),
+    },
+    'check_and_alert_task_g45sp': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 50,
+        'args': ('G45SBucket',),
+    },
+    'check_and_alert_task_stn': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 55,
+        'args': ('STNOnu',),
+    },
+    'check_and_alert_task_kwd': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 60,
+        'args': ('KWDOnu',),
+    },
+    'check_and_alert_task_mwkn': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 65,
+        'args': ('MWKn',),
+    },
+    'check_and_alert_task_ksn': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 70,
+        'args': ('KSNOnu',),
     },
 }
 CELERY_ACCEPT_CONTENT = ['json']
@@ -48,6 +89,8 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 LARK_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
+
+POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
 LARK_BUCKET_LABELS = {
     'kwtbucket': 'Offline Buildings in KWT',
@@ -59,4 +102,15 @@ LARK_BUCKET_LABELS = {
     'RMM': 'Offline Buildings in ROY',
     'LsmBucket': 'Offline Buildings in LSM',
     # Add more mappings as needed
+}
+POP_BUCKET_LABELS = {
+    'g44bucket': 'Power Outage in G44 PoP',
+    'zmmbucket': 'Power Outage in ZMM PoP',
+    'LsmBucket': 'Power Outage in LSM PoP',
+    'G45SBucket': 'Power Outage in G45S PoP',
+    'STNOnu': 'Power Outage in STN PoP',
+    'KWDOnu': 'Power Outage in KWD PoP',
+    'MWKn': 'Power Outage in MWKn PoP',
+    'KSNOnu': 'Power Outage in KSN PoP',
+    # Add more mappings as needed for other PoP buckets
 }

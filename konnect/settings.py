@@ -158,3 +158,14 @@ REST_FRAMEWORK = {
     )
         
 }
+POP_BUCKET_MAPPING = {
+    'g44bucket': 'Sonic PoP G44',
+    'zmmbucket': 'Gardenia PoP ZMM',
+    'LsmBucket': 'LSM PoP',
+    'G45SBucket': 'Charis PoP G45S',
+    'STNOnu':'STN PoP',
+    'KWDOnu': 'KWD PoP',
+    'MWKn': 'MWKn PoP',
+    'KSNOnu': 'KSN PoP',
+    # Add more mappings as needed for other PoP buckets
+}
