@@ -4,7 +4,7 @@ CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_BEAT_SCHEDULE = {
     'check_and_alert_task_kwt': {
         'task': 'konnect_admin.tasks.lark_post',
-        'schedule': 120,
+        'schedule': 1200,
         'args': ('kwtbucket',),
     },
     'check_and_alert_task_g44': {
