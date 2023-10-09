@@ -33,6 +33,7 @@ BUCKET_HOST_MAP = {
     'KWDOnu': 'KWD-FIBER',
     'MWKn': 'MWKn-FIBER',
     'KSNOnu': 'KSN-FIBER',
+    'MWKs': 'MWKs-FIBER',
 }
 
 def off_bldg(bucket):
@@ -94,6 +95,7 @@ def pop_monitor(bucket):
         'KWDOnu': 'KWD PoP',
         'MWKn': 'MWKn PoP',
         'KSNOnu': 'KSN PoP',
+        'MWKs': 'MWKs PoP',
 
 
     }
