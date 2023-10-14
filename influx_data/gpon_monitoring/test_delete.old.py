@@ -1,5 +1,4 @@
 import requests
-import datetime
 import json
 import os
 
@@ -12,7 +11,7 @@ HEADERS = {
 }
 
 # Dictionary to map regions to JSON files
-REGION_JSON = {
+region_to_json_file = {
     'stn': 'stnbldg.json',
     'mwks': 'mwksbldg.json',
     'mwkn': 'mwknbldg.json',
@@ -20,15 +19,7 @@ REGION_JSON = {
     'ksn': 'ksnbldg.json',
     # Add more regions and their corresponding JSON file names here
 }
-#Region Bucket MAP
-REGION_BUCKET_MAP = {
-    'stn': 'stnbucket',
-    'mwks': 'mwks',
-    'mwkn': 'mwkn',
-    'kwd': 'kwd',
-    'ksn': 'ksn',
-    # Add more mappings as required
-}
+
 # Function to fetch data for a region and organize it into a dictionary
 def fetch_region_data(region):
     url = f'http://app.sasakonnect.net:13000/api/onus/{region}'
@@ -56,25 +47,19 @@ def fetch_region_data(region):
         return {}
 
 # Specify the target region
-target_region = 'stn'  # Modify the region as needed
+target_region = 'ksn'  # Modify the region as needed
 building_onus = fetch_region_data(target_region)
 
 # Save the building_onus data to the corresponding JSON file
-json_file_path = os.path.join(json_directory, REGION_JSON.get(target_region))
+json_file_path = os.path.join(json_directory, region_to_json_file.get(target_region))
 
 with open(json_file_path, 'w') as json_file:
     json.dump(building_onus, json_file)
-# Clear the building_onus dictionary
-building_onus.clear()
-# Load data from the JSON file
-with open(json_file_path, 'r') as json_file:
-    building_data = json.load(json_file)
 
 print(f'Data for {target_region} has been saved to {json_file_path}')
 
 # Define the Elasticsearch search endpoint URL
-bucket = REGION_BUCKET_MAP.get(target_region)
-elasticsearch_url = f'http://localhost:9200/{bucket}/_search'
+elasticsearch_url = 'http://localhost:9200/stnbucket/_search'
 
 # Documents to be retrieved
 query = {
@@ -113,6 +98,10 @@ if response.status_code == 200:
               onu_status_dict[serial_number] = {"status": status, "building_name": building_name}
               #print(onu_status_dict)
 
+    # Now you can use the onu_status_dict and the building_onus dictionary
+    target_region = 'stn'  # Modify the region as needed
+    building_onus = fetch_region_data(target_region)
+
     # Get the list of serial numbers from the onu_status_dict
     serial_numbers = list(onu_status_dict.keys())
 
@@ -120,7 +109,7 @@ if response.status_code == 200:
 building_status = {}
 
 # Iterate through buildings
-for building, onu_serials in building_data.items():
+for building, onu_serials in building_onus.items():
     # Initialize building status as "Offline"
     building_status[building] = {"status": "Offline", "total_onus": len(onu_serials)}
 
@@ -129,11 +118,9 @@ for building, onu_serials in building_data.items():
         if serial in onu_status_dict and onu_status_dict[serial]["status"] == "Online":
             building_status[building]["status"] = "Online"
             break
-#Clear the dictionary
-onu_status_dict.clear()
-#Print the building name, status, and total ONUs
-for building, data in building_status.items():
-    print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
+# Print the building name, status, and total ONUs
 #for building, data in building_status.items():
-#    if data['status'] == 'Offline':
-#        print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
+#    print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
+for building, data in building_status.items():
+    if data['status'] == 'Offline':
+        print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
