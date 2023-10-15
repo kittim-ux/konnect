@@ -1,18 +1,25 @@
 import os
 import json
 import csv
+import pytz
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 from celery import Celery
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 from redcache import cache_data, get_cached_data
 from onu_confirmation import confirm_onu  # Import the confirm_onu function
 from gpon_monitoring.offline_alerts import onu_offline
 from utils import extract_gpon_port, extract_olt_number
 from gpon_monitoring.elastic_store import index_data
-from gpon_monitoring import fetch_data
+#from gpon_monitoring import fetch_data
 logging.basicConfig(level=logging.DEBUG)
+
+# Define your local time zone
+local_timezone = pytz.timezone('Africa/Nairobi')  # Use the correct time zone
+
+# Get the current time in your local time zone
+local_now = datetime.now(local_timezone)
 
 app = Celery('onu_tasks', broker="amqp://guest:guest@localhost:5672//", result_backend='rpc://')
 
@@ -88,22 +95,20 @@ def get_onu_status(bucket):
 
         # After collecting all serial numbers, you can fetch region data
         region = BUCKET_REGION_MAP.get(bucket, "N/A")
-        region_data = fetch_data.fetch_data(region, serial_numbers)  # Use fetch_data function
+        #region_data = fetch_data.fetch_data(region, serial_numbers)  # Use fetch_data function
 
-        for serial_number, building_data in region_data.items():
-            building_name = building_data.get('BuildingName', 'N/A')
-            print(f"Serial Number: {serial_number}, Building Name: {building_name}")  # Print the building_name
-
+        for serial_number in serial_numbers:
+            # Update elastic_timestamp for each record
+            elastic_timestamp = datetime.now(local_timezone).isoformat(),
             # Create the data entry dictionary for this record
             data_entry = {
                 'region': region,
                 'ifDescr': if_descr,
                 'serialNumber': serial_number,
                 'ifOperStatus': if_oper_status,
-                'building_name': building_name,
                 'agent_host': agent_host,
                 'influx_timestamp': record.values['_time'].isoformat(),
-                'elastic_timestamp': datetime.utcnow().isoformat(),
+                'elastic_timestamp': elastic_timestamp,
             }
             # Append the data entry to the list of all data entries
             data.append(data_entry)
@@ -147,31 +152,31 @@ def get_onu_status(bucket):
     return  
 # Ce#lery schedule
 app.conf.beat_schedule = {
-    'STNOnu-STN-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 70.0,
-        'args': ('STNOnu',),
-    },
-    'MWKs-MWKs-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 80.0,
-        'args': ('MWKs',),
-    },
+    #'STNOnu-STN-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 70.0,
+    #    'args': ('STNOnu',),
+    #},
+    #'MWKs-MWKs-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 80.0,
+    #    'args': ('MWKs',),
+    #},
     'MWKn-MWKn-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
         'schedule': 90.0,
         'args': ('MWKn',),
     },
-    'KWDOnu-KWD-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 95.0,
-        'args': ('KWDOnu',),
-    },
-    'KSNOnu-KSN-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 100.0,
-        'args': ('KSNOnu',),
-    },
+    #'KWDOnu-KWD-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 95.0,
+    #    'args': ('KWDOnu',),
+    #},
+    #'KSNOnu-KSN-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 100.0,
+    #    'args': ('KSNOnu',),
+    #},
     # Add more schedules for other buckets
     # Add more schedules for other buckets
 }

@@ -1,7 +1,8 @@
 import requests
-import datetime
+from datetime import datetime, timedelta
 import json
 import os
+import pytz
 
 # Define the directory where building data will be stored
 json_directory = '/home/kittim/projects/konnect-app/konnect/influx_data/datasets/'
@@ -29,6 +30,20 @@ REGION_BUCKET_MAP = {
     'ksn': 'ksn',
     # Add more mappings as required
 }
+
+# Define your local time zone
+local_timezone = pytz.timezone('Africa/Nairobi')  # Use the correct time zone
+
+# Get the current time in your local time zone
+local_now = datetime.now(local_timezone)
+
+time_window_minutes = 5  # Adjust this value as needed
+end_time = local_now
+start_time = end_time - timedelta(minutes=time_window_minutes)
+start_time_str = start_time.isoformat()
+end_time_str = end_time.isoformat()
+
+
 # Function to fetch data for a region and organize it into a dictionary
 def fetch_region_data(region):
     url = f'http://app.sasakonnect.net:13000/api/onus/{region}'
@@ -56,7 +71,7 @@ def fetch_region_data(region):
         return {}
 
 # Specify the target region
-target_region = 'stn'  # Modify the region as needed
+target_region = 'mwkn'  # Modify the region as needed
 building_onus = fetch_region_data(target_region)
 
 # Save the building_onus data to the corresponding JSON file
@@ -73,18 +88,29 @@ with open(json_file_path, 'r') as json_file:
 print(f'Data for {target_region} has been saved to {json_file_path}')
 
 # Define the Elasticsearch search endpoint URL
+total_records = 0
 bucket = REGION_BUCKET_MAP.get(target_region)
-elasticsearch_url = f'http://localhost:9200/{bucket}/_search'
+elasticsearch_url = f'http://localhost:9200/{bucket}/_search?'
 
 # Documents to be retrieved
 query = {
-    "_source": ["serialNumber", "ifOperStatus", "building_name"],
+    "_source": ["serialNumber", "ifOperStatus", "elastic_timestamp"],
     "size": 2000,
     "query": {
-        "match_all": {}  # Match all documents
+        "bool": {
+            "must": [
+                {
+                    "range": {
+                        "elastic_timestamp": {
+                            "gte": start_time_str,
+                            "lte": end_time_str
+                        }
+                    }
+                }
+            ]
+        }
     }
-}
-# Send the search request to Elasticsearch
+}# Send the search request to Elasticsearch
 response = requests.post(elasticsearch_url, json=query)
 
 # Check if the request was successful
@@ -92,7 +118,7 @@ if response.status_code == 200:
     # Parse the JSON response
     response_data = response.json()
 
-    #print(json.dumps(response_data, indent=4))
+    print(json.dumps(response_data, indent=4))
 
     # Extract the hits (documents) from the response
     hits = response_data.get('hits', {}).get('hits', [])
@@ -105,14 +131,15 @@ if response.status_code == 200:
         source = hit.get('_source', {})
         serial_number = source.get('serialNumber')
         if_oper_status = source.get('ifOperStatus')
-        building_name = source.get('building_name')
+        elastic_timestamp = source.get('elastic_timestamp')
 
         if serial_number and if_oper_status is not None:
         # Map the ifOperStatus to "Online" or "Offline"
               status = "Online" if if_oper_status == 1.0 else "Offline"
-              onu_status_dict[serial_number] = {"status": status, "building_name": building_name}
+              onu_status_dict[serial_number] = {"status": status}
+              total_records += 1
               #print(onu_status_dict)
-
+    print(f'Total records collected: {total_records}')
     # Get the list of serial numbers from the onu_status_dict
     serial_numbers = list(onu_status_dict.keys())
 

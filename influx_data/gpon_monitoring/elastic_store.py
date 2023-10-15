@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime, timedelta
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 
@@ -17,6 +18,7 @@ BUCKET_INDEX_MAP = {
     'KWDOnu': 'kwd',
     'KSNOnu': 'ksn',
 }
+# Define your local time zone
 
 def index_data(bucket, data):
     try:
@@ -38,7 +40,7 @@ def index_data(bucket, data):
                     'ifDescr': entry['ifDescr'],
                     'serialNumber': entry['serialNumber'],
                     'ifOperStatus': entry['ifOperStatus'],
-                    'building_name': entry['building_name'],
+                    #'building_name': entry['building_name'],
                     'agent_host': entry['agent_host'],
                     'influx_timestamp': entry['influx_timestamp'],
                     'elastic_timestamp': entry['elastic_timestamp'],
