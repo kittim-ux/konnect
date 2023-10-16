@@ -145,22 +145,34 @@ if response.status_code == 200:
 
     # Dictionary to store building status and total ONUs
 building_status = {}
+# Initialize a list to store building names that meet the criteria (5 or more ONUs)
+buildings_to_display = []
 
 # Iterate through buildings
 for building, onu_serials in building_data.items():
-    # Initialize building status as "Offline"
-    building_status[building] = {"status": "Offline", "total_onus": len(onu_serials)}
+    if len(onu_serials) >= 5:
+        # Initialize building status as "Offline"
+        building_status[building] = {"status": "Offline", "total_onus": len(onu_serials)}
 
-    # Check if any ONU in the building is online
-    for serial in onu_serials:
-        if serial in onu_status_dict and onu_status_dict[serial]["status"] == "Online":
-            building_status[building]["status"] = "Online"
-            break
-#Clear the dictionary
+        # Check if any ONU in the building is online
+        for serial in onu_serials:
+            if serial in onu_status_dict and onu_status_dict[serial]["status"] == "Online":
+                building_status[building]["status"] = "Online"
+                break
+
+        if building_status[building]["status"] == "Offline":
+            buildings_to_display.append(building)
+
+# Clear the dictionary
 onu_status_dict.clear()
+
+# Print the building names that meet the criteria
+for building in buildings_to_display:
+    print(f"Building: {building}, Status: Offline, Total_ONUs: {building_status[building]['total_onus']}")
+
 #Print the building name, status, and total ONUs
-for building, data in building_status.items():
-    print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
+#for building, data in building_status.items():
+#    print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
 #for building, data in building_status.items():
 #    if data['status'] == 'Offline':
 #        print(f"Building: {building}, Status: {data['status']}, Total_ONUs: {data['total_onus']}")
