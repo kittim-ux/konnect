@@ -3,6 +3,13 @@ from datetime import datetime, timedelta
 import json
 import os
 import pytz
+import django
+import sys
+sys.path.append('/home/kittim/projects/konnect-app/konnect/')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'konnect.settings')
+django.setup()
+from konnect_admin.tasks import gpon_alert
+
 
 # Define the directory where building data will be stored
 json_directory = '/home/kittim/projects/konnect-app/konnect/influx_data/datasets/'
@@ -45,7 +52,7 @@ end_time_str = end_time.isoformat()
 
 
 # Function to fetch data for a region and organize it into a dictionary
-def fetch_region_data(region):
+def gpon_offline_data(region):
     url = f'http://app.sasakonnect.net:13000/api/onus/{region}'
     try:
         response = requests.get(url, headers=HEADERS)
@@ -72,7 +79,7 @@ def fetch_region_data(region):
 
 # Specify the target region
 target_region = 'mwkn'  # Modify the region as needed
-building_onus = fetch_region_data(target_region)
+building_onus = gpon_offline_data(target_region)
 
 # Save the building_onus data to the corresponding JSON file
 json_file_path = os.path.join(json_directory, REGION_JSON.get(target_region))
@@ -95,7 +102,7 @@ elasticsearch_url = f'http://localhost:9200/{bucket}/_search?'
 # Documents to be retrieved
 query = {
     "_source": ["serialNumber", "ifOperStatus", "elastic_timestamp"],
-    "size": 2000,
+    "size": 2500,
     "query": {
         "bool": {
             "must": [
@@ -146,7 +153,10 @@ if response.status_code == 200:
     # Dictionary to store building status and total ONUs
 building_status = {}
 # Initialize a list to store building names that meet the criteria (5 or more ONUs)
-buildings_to_display = []
+buildings_display = []
+
+# Create a list to store building messages
+building_messages = []
 
 # Iterate through buildings
 for building, onu_serials in building_data.items():
@@ -161,14 +171,23 @@ for building, onu_serials in building_data.items():
                 break
 
         if building_status[building]["status"] == "Offline":
-            buildings_to_display.append(building)
+            buildings_display.append(building)
 
 # Clear the dictionary
 onu_status_dict.clear()
 
-# Print the building names that meet the criteria
-for building in buildings_to_display:
-    print(f"Building: {building}, Status: Offline, Total_ONUs: {building_status[building]['total_onus']}")
+# Prepare the message text for each building
+for building in buildings_display:
+    message = f"Building: {building}, Status: Offline, Total_ONUs: {building_status[building]['total_onus']}"
+    building_messages.append(message)
+
+# Send the aggregated messages to the alert function
+if building_messages:
+    # Combine messages with line breaks
+    message = "\n".join(building_messages)
+    gpon_alert(message, bucket)
+
+
 
 #Print the building name, status, and total ONUs
 #for building, data in building_status.items():

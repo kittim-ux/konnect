@@ -97,6 +97,7 @@ LARK_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf
 
 POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
+
 LARK_BUCKET_LABELS = {
     'kwtbucket': 'Offline Buildings in KWT',
     'g44bucket': 'Offline Buildings in G44',
@@ -117,6 +118,13 @@ POP_BUCKET_LABELS = {
     'KWDOnu': 'Power Outage in KWD PoP',
     'MWKn': 'Power Outage in MWKn PoP',
     'KSNOnu': 'Power Outage in KSN PoP',
-    'MWKs': 'Power Outage in MWK PoP',
+    'MWKs': 'Power Outage in MWKs PoP',
     # Add more mappings as needed for other PoP buckets
+}
+GPON_BUCKET_LABELS = {
+    'STNOnu': 'High Offline ONU Count in STN',
+    'KWDOnu': 'High Offline ONU Count in KWD',
+    'MWKn': 'High Offline ONU Count in MWKn',
+    'KSNOnu': 'High Offline ONU Count in KSN',
+    'MWKs': 'High Offline ONU Count in MWKs',
 }

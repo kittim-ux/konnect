@@ -1,8 +1,9 @@
+import json
 import logging
 from celery import shared_task
 from .influx_utils import off_bldg, pop_monitor
+#from influx_data.gpon_monitoring.monitoring_main import gpon_offline_data
 from .cache_bldgs import is_data_sent, cache_data, pop_cache_data
-import json
 import requests
 from django.conf import settings
 
@@ -143,3 +144,25 @@ def lark_post(bucket_name):
     # Log the collected 'name' values and label for verification
     logger.info("Collected 'name' values: %s", unique_names_sets[bucket_name])
     logger.info("Label: %s", label)
+
+###################################################################################
+#GPON MONITORING
+def gpon_alert(message, bucket):
+    """
+    Sends an alert message with the list of offline buildings.
+
+    Args:
+        message (str): A message string with offline building names and their total ONUs.
+        bucket (str): The name of the bucket associated with the offline buildings.
+    """
+    if message:
+        # Get the label associated with the bucket name from the mapping dictionary
+        label = settings.GPON_BUCKET_LABELS.get(bucket, 'Unknown Bucket')
+
+        # Send the message to the Lark webhook with the dynamic title
+        send_lark_alert(message, label, settings.LARK_WEBHOOK_URL)
+
+        # Log the collected building names and label for verification
+        logger.info("Collected offline buildings: %s", message)
+        logger.info("Label: %s", label)
+
