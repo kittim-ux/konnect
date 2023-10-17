@@ -147,6 +147,8 @@ def get_onu_status(bucket):
         # Index the data into Elasticsearch
         index_data(bucket, data)
         total_data = len(data)
+        target_region = BUCKET_REGION_MAP.get(bucket, "N/A")
+        gpon_offline_data(ta)
         print(f"Total Records indexed: {total_data}")
 
     return  

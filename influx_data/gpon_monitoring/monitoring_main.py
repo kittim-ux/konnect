@@ -158,6 +158,12 @@ buildings_display = []
 # Create a list to store building messages
 building_messages = []
 
+# Initialize a dictionary to store building names and their total ONUs
+building_data_to_send = {}
+
+# Find the maximum length of building names for formatting
+max_building_name_length = max(len(building) for building in building_data.keys())
+
 # Iterate through buildings
 for building, onu_serials in building_data.items():
     if len(onu_serials) >= 5:
@@ -171,21 +177,23 @@ for building, onu_serials in building_data.items():
                 break
 
         if building_status[building]["status"] == "Offline":
-            buildings_display.append(building)
+            # Collect building name and total ONUs
+            building_data_to_send[building] = len(onu_serials)
 
 # Clear the dictionary
 onu_status_dict.clear()
 
-# Prepare the message text for each building
-for building in buildings_display:
-    message = f"Building: {building}, Status: Offline, Total_ONUs: {building_status[building]['total_onus']}"
-    building_messages.append(message)
+# Prepare the message text with precise alignment
+message = f"Name{' ' * (max_building_name_length - 4)}\tONUs\n"  # Header line with adjusted space
 
-# Send the aggregated messages to the alert function
-if building_messages:
-    # Combine messages with line breaks
-    message = "\n".join(building_messages)
+for building, total_onus in building_data_to_send.items():
+    padding = ' ' * (max_building_name_length - len(building) + 4)  # Adjust the padding here
+    message += f"{building}{padding}\t{total_onus}\n"  # Add extra space here
+
+# Send the aggregated message to the alert function
+if building_data_to_send:
     gpon_alert(message, bucket)
+
 
 
 
