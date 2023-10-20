@@ -158,29 +158,29 @@ def get_onu_status(bucket):
 app.conf.beat_schedule = {
     #'STNOnu-STN-FIBER-every-30-seconds': {
     #    'task': 'onu_status_task',
-    #    'schedule': 600.0,
+    #    'schedule': 500.0,
     #    'args': ('STNOnu',),
     #},
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 150.0,
+        'schedule': 70.0,
         'args': ('MWKs',),
     },
-    #'MWKn-MWKn-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 170.0,
-    #    'args': ('MWKn',),
-    #},
-    #'KWDOnu-KWD-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 160.0,
-    #    'args': ('KWDOnu',),
-    #},
-    #'KSNOnu-KSN-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 180.0,
-    #    'args': ('KSNOnu',),
-    #},
+    'MWKn-MWKn-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 90.0,
+        'args': ('MWKn',),
+    },
+    'KWDOnu-KWD-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 110.0,
+        'args': ('KWDOnu',),
+    },
+    'KSNOnu-KSN-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 130.0,
+        'args': ('KSNOnu',),
+    },
      #Add more schedules for other buckets
     # Add more schedules for other buckets
 }

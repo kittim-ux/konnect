@@ -159,7 +159,7 @@ def gpon_alert(message, region):
         label = settings.GPON_BUCKET_LABELS.get(region, 'Unknown Region')
 
         # Send the message to the Lark webhook with the dynamic title
-        send_lark_alert(message, label, settings.LARK_WEBHOOK_URL)
+        send_lark_alert(message, label, settings.GPON_WEBHOOK_URL)
 
         # Log the collected building names and label for verification
         logger.info("Collected offline buildings: %s", message)

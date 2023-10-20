@@ -95,9 +95,10 @@ def pop_monitor(bucket):
         'KWDOnu': 'KWD PoP',
         'MWKn': 'MWKn PoP',
         'KSNOnu': 'KSN PoP',
+        'kwtbucket': 'Mukuyu PoP',
+        'G45N1Bucket': 'Qwetu PoP',
         'MWKs': 'MWKs PoP',
-
-
+        'RMM': 'Joppa PoP',
     }
     if bucket in POP_BUCKET_MAPPING:
         # Handle PoP-specific bucket names

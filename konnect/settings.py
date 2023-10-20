@@ -167,6 +167,9 @@ POP_BUCKET_MAPPING = {
     'KWDOnu': 'KWD PoP',
     'MWKn': 'MWKn PoP',
     'KSNOnu': 'KSN PoP',
-    'MWKs': 'MWKs PoP',
+    'kwtbucket': 'Mukuyu PoP',
+    'G45N1Bucket':'Qwetu PoP',
+    'MWKs':'MWKs PoP',
+    'RMM':'Joppa PoP',
     # Add more mappings as needed for other PoP buckets
 }

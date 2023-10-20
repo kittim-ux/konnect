@@ -55,12 +55,15 @@ local_timezone = pytz.timezone('Africa/Nairobi')  # Use the correct time zone
 # Get the current time in your local time zone
 local_now = datetime.now(local_timezone)
 
-time_window_minutes = 5  # Adjust this value as needed
+time_window_minutes = 4  # Adjust this value as needed
 end_time = local_now
 start_time = end_time - timedelta(minutes=time_window_minutes)
 start_time_str = start_time.isoformat()
 end_time_str = end_time.isoformat()
 # Define your local time zone
+
+print(f"Start Time: {start_time_str}")
+print(f"End Time: {end_time_str}")
 
 # Define a flag variable to check if data has been indexed
 data_indexed = False
@@ -147,7 +150,7 @@ def gpon_offline_data(region):
             with open(json_file_path, 'r') as json_file:
                 building_data = json.load(json_file)
     
-            print(f'Data for {region} has been saved to {json_file_path}')
+            #print(f'Data for {region} has been saved to {json_file_path}')
     
             total_records = 0
             bucket = REGION_BUCKET_MAP.get(region)
@@ -156,7 +159,7 @@ def gpon_offline_data(region):
             # Documents to be retrieved
             query = {
                 "_source": ["serialNumber", "ifOperStatus", "elastic_timestamp"],
-                "size": 2500,
+                "size": 2000,
                 "query": {
                     "bool": {
                         "must": [
@@ -179,7 +182,7 @@ def gpon_offline_data(region):
                 # Parse the JSON response
                 response_data = response.json()
             
-                print(json.dumps(response_data, indent=4))
+                #print(json.dumps(response_data, indent=4))
             
                 # Extract the hits (documents) from the response
                 hits = response_data.get('hits', {}).get('hits', [])
@@ -193,6 +196,7 @@ def gpon_offline_data(region):
                     serial_number = source.get('serialNumber')
                     if_oper_status = source.get('ifOperStatus')
                     elastic_timestamp = source.get('elastic_timestamp')
+                    #print(f"Elasticsearch Timestamp: {elastic_timestamp}")
             
                     if serial_number and if_oper_status is not None:
                     # Map the ifOperStatus to "Online" or "Offline"
@@ -206,13 +210,13 @@ def gpon_offline_data(region):
                 
                 # Dictionary to store building status and total ONUs
             building_status = {}
-            # Initialize a list to store building names that meet the criteria (5 or more ONUs)
-            buildings_display = []
-            
-            # Create a list to store building messages
-            building_messages = []
-            
-            # Initialize a dictionary to store building names and their total ONUs
+            ## Initialize a list to store building names that meet the criteria (5 or more ONUs)
+            #buildings_display = []
+            #
+            ## Create a list to store building messages
+            #building_messages = []
+            #
+            ## Initialize a dictionary to store building names and their total ONUs
             building_data_to_send = {}
             
             # Find the maximum length of building names for formatting
@@ -246,7 +250,7 @@ def gpon_offline_data(region):
             # Send the aggregated message to the alert function
             if building_data_to_send:
                 gpon_alert(message, region)
-                print(message)
+                #print(message)
             
             #            
     except requests.exceptions.RequestException as e:
