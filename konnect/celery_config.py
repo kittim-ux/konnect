@@ -122,9 +122,9 @@ POP_BUCKET_LABELS = {
     # Add more mappings as needed for other PoP buckets
 }
 GPON_BUCKET_LABELS = {
-    'STNOnu': 'High Offline ONU Count in STN',
-    'KWDOnu': 'High Offline ONU Count in KWD',
-    'MWKn': 'High Offline ONU Count in MWKn',
-    'KSNOnu': 'High Offline ONU Count in KSN',
-    'MWKs': 'High Offline ONU Count in MWKs',
+    'stn': 'High Offline ONU Count in STN',
+    'kwd': 'High Offline ONU Count in KWD',
+    'mwkn': 'High Offline ONU Count in MWKn',
+    'ksn': 'High Offline ONU Count in KSN',
+    'mwks': 'High Offline ONU Count in MWKs',
 }

@@ -52,6 +52,7 @@ end_time_str = end_time.isoformat()
 
 
 # Function to fetch data for a region and organize it into a dictionary
+onu_status_dict = {}
 def gpon_offline_data(region):
     url = f'http://app.sasakonnect.net:13000/api/onus/{region}'
     try:
@@ -77,123 +78,84 @@ def gpon_offline_data(region):
         print(f"An error occurred while fetching data for region {region}: {e}")
         return {}
 
-# Specify the target region
-target_region = 'mwkn'  # Modify the region as needed
-building_onus = gpon_offline_data(target_region)
 
-# Save the building_onus data to the corresponding JSON file
-json_file_path = os.path.join(json_directory, REGION_JSON.get(target_region))
-
-with open(json_file_path, 'w') as json_file:
-    json.dump(building_onus, json_file)
-# Clear the building_onus dictionary
-building_onus.clear()
-# Load data from the JSON file
-with open(json_file_path, 'r') as json_file:
-    building_data = json.load(json_file)
-
-print(f'Data for {target_region} has been saved to {json_file_path}')
-
-# Define the Elasticsearch search endpoint URL
-total_records = 0
-bucket = REGION_BUCKET_MAP.get(target_region)
-elasticsearch_url = f'http://localhost:9200/{bucket}/_search?'
-
-# Documents to be retrieved
-query = {
-    "_source": ["serialNumber", "ifOperStatus", "elastic_timestamp"],
-    "size": 2500,
-    "query": {
-        "bool": {
-            "must": [
-                {
-                    "range": {
-                        "elastic_timestamp": {
-                            "gte": start_time_str,
-                            "lte": end_time_str
-                        }
-                    }
-                }
-            ]
-        }
-    }
-}# Send the search request to Elasticsearch
-response = requests.post(elasticsearch_url, json=query)
 
 # Check if the request was successful
-if response.status_code == 200:
-    # Parse the JSON response
-    response_data = response.json()
-
-    print(json.dumps(response_data, indent=4))
-
-    # Extract the hits (documents) from the response
-    hits = response_data.get('hits', {}).get('hits', [])
-
-    # dictionary to associate ONU serials with their operation status
-    onu_status_dict = {}
-
-    # Iterate through the hits and populate the dictionary
-    for hit in hits:
-        source = hit.get('_source', {})
-        serial_number = source.get('serialNumber')
-        if_oper_status = source.get('ifOperStatus')
-        elastic_timestamp = source.get('elastic_timestamp')
-
-        if serial_number and if_oper_status is not None:
-        # Map the ifOperStatus to "Online" or "Offline"
-              status = "Online" if if_oper_status == 1.0 else "Offline"
-              onu_status_dict[serial_number] = {"status": status}
-              total_records += 1
-              #print(onu_status_dict)
-    print(f'Total records collected: {total_records}')
-    # Get the list of serial numbers from the onu_status_dict
-    serial_numbers = list(onu_status_dict.keys())
-
-    # Dictionary to store building status and total ONUs
-building_status = {}
-# Initialize a list to store building names that meet the criteria (5 or more ONUs)
-buildings_display = []
-
-# Create a list to store building messages
-building_messages = []
-
-# Initialize a dictionary to store building names and their total ONUs
-building_data_to_send = {}
-
-# Find the maximum length of building names for formatting
-max_building_name_length = max(len(building) for building in building_data.keys())
-
-# Iterate through buildings
-for building, onu_serials in building_data.items():
-    if len(onu_serials) >= 5:
-        # Initialize building status as "Offline"
-        building_status[building] = {"status": "Offline", "total_onus": len(onu_serials)}
-
-        # Check if any ONU in the building is online
-        for serial in onu_serials:
-            if serial in onu_status_dict and onu_status_dict[serial]["status"] == "Online":
-                building_status[building]["status"] = "Online"
-                break
-
-        if building_status[building]["status"] == "Offline":
-            # Collect building name and total ONUs
-            building_data_to_send[building] = len(onu_serials)
-
-# Clear the dictionary
-onu_status_dict.clear()
-
-# Prepare the message text with precise alignment
-message = f"Name{' ' * (max_building_name_length - 4)}\tONUs\n"  # Header line with adjusted space
-
-for building, total_onus in building_data_to_send.items():
-    padding = ' ' * (max_building_name_length - len(building) + 4)  # Adjust the padding here
-    message += f"{building}{padding}\t{total_onus}\n"  # Add extra space here
-
-# Send the aggregated message to the alert function
-if building_data_to_send:
-    gpon_alert(message, bucket)
-
+#if response.status_code == 200:
+#    # Parse the JSON response
+#    response_data = response.json()
+#
+#    print(json.dumps(response_data, indent=4))
+#
+#    # Extract the hits (documents) from the response
+#    hits = response_data.get('hits', {}).get('hits', [])
+#
+#    # dictionary to associate ONU serials with their operation status
+#
+#
+#    #onu_status_dict = {}
+#
+#    # Iterate through the hits and populate the dictionary
+#    for hit in hits:
+#        source = hit.get('_source', {})
+#        serial_number = source.get('serialNumber')
+#        if_oper_status = source.get('ifOperStatus')
+#        elastic_timestamp = source.get('elastic_timestamp')
+#
+#        if serial_number and if_oper_status is not None:
+#        # Map the ifOperStatus to "Online" or "Offline"
+#              status = "Online" if if_oper_status == 1.0 else "Offline"
+#              onu_status_dict[serial_number] = {"status": status}
+#              total_records += 1
+#              #print(onu_status_dict)
+#    print(f'Total records collected: {total_records}')
+#    # Get the list of serial numbers from the onu_status_dict
+#    serial_numbers = list(onu_status_dict.keys())
+#
+#    # Dictionary to store building status and total ONUs
+#building_status = {}
+## Initialize a list to store building names that meet the criteria (5 or more ONUs)
+#buildings_display = []
+#
+## Create a list to store building messages
+#building_messages = []
+#
+## Initialize a dictionary to store building names and their total ONUs
+#building_data_to_send = {}
+#
+## Find the maximum length of building names for formatting
+#max_building_name_length = max(len(building) for building in building_data.keys())
+#
+## Iterate through buildings
+#for building, onu_serials in building_data.items():
+#    if len(onu_serials) >= 5:
+#        # Initialize building status as "Offline"
+#        building_status[building] = {"status": "Offline", "total_onus": len(onu_serials)}
+#
+#        # Check if any ONU in the building is online
+#        for serial in onu_serials:
+#            if serial in onu_status_dict and onu_status_dict[serial]["status"] == "Online":
+#                building_status[building]["status"] = "Online"
+#                break
+#
+#        if building_status[building]["status"] == "Offline":
+#            # Collect building name and total ONUs
+#            building_data_to_send[building] = len(onu_serials)
+#
+## Clear the dictionary
+#onu_status_dict.clear()
+#
+## Prepare the message text with precise alignment
+#message = f"Name{' ' * (max_building_name_length - 4)}\tONUs\n"  # Header line with adjusted space
+#
+#for building, total_onus in building_data_to_send.items():
+#    padding = ' ' * (max_building_name_length - len(building) + 4)  # Adjust the padding here
+#    message += f"{building}{padding}\t{total_onus}\n"  # Add extra space here
+#
+## Send the aggregated message to the alert function
+#if building_data_to_send:
+#    gpon_alert(message, bucket)
+#
 
 
 
