@@ -7,6 +7,11 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 from .monitoring_main import REGION_JSON
 from konnect_admin.tasks import gpon_alert
+import logging
+# Configure the logger
+logging.basicConfig(filename='tasks.log', level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
 
 # Initialize the Elasticsearch client
 es_host = os.getenv('ELASTICSEARCH_HOST')
@@ -60,11 +65,6 @@ end_time = local_now
 start_time = end_time - timedelta(minutes=time_window_minutes)
 start_time_str = start_time.isoformat()
 end_time_str = end_time.isoformat()
-# Define your local time zone
-
-print(f"Start Time: {start_time_str}")
-print(f"End Time: {end_time_str}")
-
 # Define a flag variable to check if data has been indexed
 data_indexed = False
 
@@ -103,7 +103,7 @@ def index_data(bucket, data, region):
             # Force an index refresh
             es.indices.refresh(index=elasticsearch_index)
 
-            print(f"Data indexed into Elasticsearch for {bucket} successfully.")
+            #print("Data indexed into Elasticsearch for %s successfully.", bucket)
             
             # Set the flag to True after data has been indexed
             data_indexed = True
@@ -113,7 +113,7 @@ def index_data(bucket, data, region):
                 gpon_offline_data(region)
     
     except Exception as e:
-        print(f"Error indexing data for {bucket} into Elasticsearch: {str(e)}")
+        logger.error("Error indexing data for %s into Elasticsearch: %s", bucket, str(e))
         # Add the except block to handle exceptions
         raise e
 
@@ -204,7 +204,7 @@ def gpon_offline_data(region):
                           onu_status_dict[serial_number] = {"status": status}
                           total_records += 1
                 #print(onu_status_dict)
-                print(f'Total records collected: {total_records}')
+                logger.info(f'Total records collected: {total_records}')
 #               # Get the list of serial numbers from the onu_status_dict
                 serial_numbers = list(onu_status_dict.keys())
                 
@@ -254,7 +254,7 @@ def gpon_offline_data(region):
             
             #            
     except requests.exceptions.RequestException as e:
-     print(f"An error occurred while fetching data for region {region}: {e}")
+        logger.error("An error occurred while fetching data for region %s: %s", region, str(e))
      # Add the except block to handle exceptions
    
     

@@ -28,11 +28,11 @@ def confirm_onu(serial_code, olt_number, gpon_port):
             return confirmation_data
         else:
             # Handle API request errors here (e.g., raise an exception or log)
-            print("API request failed with status code:", response.status_code)
+            #print("API request failed with status code:", response.status_code)
             return None
     except Exception as e:
         # Handle exceptions (e.g., network errors) here
-        print("An error occurred while making the API request:", str(e))
+        #print("An error occurred while making the API request:", str(e))
         return None
 
 

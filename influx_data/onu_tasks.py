@@ -66,11 +66,11 @@ def get_onu_status(bucket):
         |> filter(fn: (r) => r["host"] == "{BUCKET_HOST_MAP[bucket]}")
         |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
         |> yield(name: "mean")"""
-    print(f"Fetching data from {bucket}...")
+    #print(f"Fetching data from {bucket}...")
 
     influx_client = InfluxDBClient(url=url, token=token, org=org)
     results = influx_client.query_api().query(org=org, query=query)
-    print(f"Fetched {len(results)} records from {bucket}")
+    #print(f"Fetched {len(results)} records from {bucket}")
 
     data = []
     # Open the CSV file in write mode and create a CSV writer
@@ -119,8 +119,8 @@ def get_onu_status(bucket):
 
             if not cached_data:
                 # Print the data before caching
-                print("Data Missing in the Cache")
-                print(json.dumps(data_entry, indent=4))
+                #print("Data Missing in the Cache")
+                #print(json.dumps(data_entry, indent=4))
 
                 if if_oper_status == 1:
                     # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
@@ -131,15 +131,15 @@ def get_onu_status(bucket):
                     if confirmation_data:
                         # Process the confirmation data (e.g., print or save it)
                         cache_data(bucket, serial_number, data_entry)
-                        print(json.dumps({
-                            'bucket': bucket,
-                            'ifDescr': if_descr,
-                            'serialNumber': serial_number,
-                            'ifOperStatus': if_oper_status,
-                            'agent_host': agent_host,
-                            'gpon_port': gpon_port,
-                            'olt_number': olt_number
-                        }, indent=4))
+                        #print(json.dumps({
+                        #    'bucket': bucket,
+                        #    'ifDescr': if_descr,
+                        #    'serialNumber': serial_number,
+                        #    'ifOperStatus': if_oper_status,
+                        #    'agent_host': agent_host,
+                        #    'gpon_port': gpon_port,
+                        #    'olt_number': olt_number
+                        #}, indent=4))
                     else:
                         # Handle failed confirmation
                         #not_confirmed(bucket, serial_number, data_entry)
@@ -149,36 +149,36 @@ def get_onu_status(bucket):
     # Index the data into Elasticsearch
     region = BUCKET_INDEX_MAP.get(bucket, "N/A")
     index_data(bucket, data, region)
-    total_data = len(data)
-    print(f"Total Records indexed: {total_data}")
+    #total_data = len(data)
+    #print(f"Total Records indexed: {total_data}")
             
 
     return  
 # Ce#lery schedule
 app.conf.beat_schedule = {
-    #'STNOnu-STN-FIBER-every-30-seconds': {
-    #    'task': 'onu_status_task',
-    #    'schedule': 500.0,
-    #    'args': ('STNOnu',),
-    #},
+    'STNOnu-STN-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 700.0,
+        'args': ('STNOnu',),
+    },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 70.0,
+        'schedule': 60.0,
         'args': ('MWKs',),
     },
     'MWKn-MWKn-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 90.0,
+        'schedule': 80.0,
         'args': ('MWKn',),
     },
     'KWDOnu-KWD-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 110.0,
+        'schedule': 100.0,
         'args': ('KWDOnu',),
     },
     'KSNOnu-KSN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 130.0,
+        'schedule': 110.0,
         'args': ('KSNOnu',),
     },
      #Add more schedules for other buckets

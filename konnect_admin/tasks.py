@@ -8,6 +8,7 @@ from django.conf import settings
 
 # Configure the logger
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
 
 def send_lark_alert(message, label, webhook_url):
     headers = {
@@ -54,7 +55,7 @@ def lark_post_pop(bucket_name):
     if bucket_name in settings.POP_BUCKET_MAPPING:
         # Fetch data using a function specific to PoP power outages
         data = pop_monitor(bucket_name)
-        print(data)
+        #print(data)
         logger.debug("Data fetched for bucket %s: %s", bucket_name, data)
 
         if data is None or len(data) == 0:
