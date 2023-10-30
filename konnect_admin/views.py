@@ -103,7 +103,7 @@ class InfluxBldgView(APIView):
         csv_file = self.CSV_BUCKET_MAP[bucket]['csv_file']
         bucket = self.CSV_BUCKET_MAP[bucket]['bucket']
         
-        dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
+        dataset_dir = '/home/kittim/projects/konnect-app/konnect/influx_data/datasets'
 
         # Check if the building name exists in the specified CSV file
         with open(os.path.join(dataset_dir, csv_file), "r") as f:

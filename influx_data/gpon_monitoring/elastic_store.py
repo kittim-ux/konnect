@@ -68,7 +68,7 @@ end_time_str = end_time.isoformat()
 # Define a flag variable to check if data has been indexed
 data_indexed = False
 
-def index_data(bucket, data, region):
+def index_data(bucket, data_to_index, region):
     global data_indexed  # Make the flag variable global
     try:
         documents = []
@@ -81,7 +81,7 @@ def index_data(bucket, data, region):
                 # You can also use Elasticsearch index templates for more complex mappings
                 es.indices.create(index=elasticsearch_index)
 
-            for entry in data:
+            for entry in data_to_index:
                 # Validate data before indexing (e.g., check required fields)
 
                 document = {

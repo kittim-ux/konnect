@@ -71,89 +71,85 @@ def get_onu_status(bucket):
     influx_client = InfluxDBClient(url=url, token=token, org=org)
     results = influx_client.query_api().query(org=org, query=query)
     #print(f"Fetched {len(results)} records from {bucket}")
+    
 
-    data = []
-    # Open the CSV file in write mode and create a CSV writer
     csv_file_path = 'offline_onu.csv'
+
     with open(csv_file_path, mode='a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
+    
         serial_numbers = []
+        region = BUCKET_REGION_MAP.get(bucket, "N/A")
+        data_to_index = []  # Initialize the list to store data to be indexed
+    
         for table in results:
             for record in table.records:
                 serial_number = record.values.get("serialNumber", None)
                 if serial_number and record["_value"] == 2:  # Check if ifOperStatus is 2 (OFFLINE)
                     # Write the serial number to the CSV file
                     csv_writer.writerow([serial_number])
-
                 if serial_number:
-                    serial_number = serial_number.replace("Ahdi:", "BDCM:")
-                    if_descr = record.values.get("ifDescr", "N/A")
                     agent_host = record.values.get("agent_host", "N/A")
-                    gpon_port = extract_gpon_port(if_descr)  # Extract gpon_port from if_descr
-                    olt_number = extract_olt_number(agent_host)  # Extract olt_number from agent_host
-                    if_oper_status = record["_value"]  # Access the value of ifOperStatus
+                    if_descr = record.values.get("ifDescr", "N/A")
+    
+                    # Extract gpon_port and olt_number
+                    gpon_port = extract_gpon_port(if_descr)
+                    olt_number = extract_olt_number(agent_host)
+    
+                    if_oper_status = record["_value"]
                     serial_numbers.append(serial_number)
+                    # After collecting all serial numbers, you can fetch region data
+                    elastic_timestamp = datetime.now(local_timezone).isoformat(),
+                    # Create a data entry dictionary for this record
+                    data_entry = {
+                        'region': BUCKET_REGION_MAP.get(bucket, "N/A"),
+                        'ifDescr': if_descr,
+                        'serialNumber': serial_number,
+                        'ifOperStatus': if_oper_status,
+                        'agent_host': agent_host,
+                        'gpon_port': gpon_port,
+                        'olt_number': olt_number,
+                        'influx_timestamp': record.values['_time'].isoformat(),
+                        'elastic_timestamp': elastic_timestamp,
+                    }
+                    data_to_index.append(data_entry)
+    
+                    # Check if data is cached
+                    cached_data = get_cached_data(bucket, serial_number)
+    
+                    if not cached_data:
+                        print("Data Missing in the Cache")
+                        if if_oper_status == 1:
+                            # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
+                            # Cache the new data entry in Redis
+                            #cache_data(bucket, serial_number, data_entry)
+    
+                            # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
+                            confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
+                            if confirmation_data:
+                                # Process the confirmation data (e.g., print or save it)
+                                cache_data(bucket, serial_number, data_entry)
+                                #print(json.dumps({
+                                #    'bucket': bucket,
+                                #    'ifDescr': if_descr,
+                                #    'serialNumber': serial_number,
+                                #    'ifOperStatus': if_oper_status,
+                                #    'agent_host': agent_host,
+                                #    'gpon_port': gpon_port,
+                                #    'olt_number': olt_number
+                                #}, indent=4))
+                            else:
+                                #print("ONU confirmation failed or encountered an error.")
+                                csv_writer.writerow([serial_number])
+    
+        # Index the data into Elasticsearch
+        region = BUCKET_INDEX_MAP.get(bucket, "N/A")
+        index_data(bucket, data_to_index, region)
+        #total_data = len(data_to_index)
+        #print(f"Total Records indexed: {total_data}")
+    return
 
-        # After collecting all serial numbers, you can fetch region data
-        region = BUCKET_REGION_MAP.get(bucket, "N/A")
-        #region_data = fetch_data.fetch_data(region, serial_numbers)  # Use fetch_data function
 
-        for serial_number in serial_numbers:
-            # Update elastic_timestamp for each record
-            elastic_timestamp = datetime.now(local_timezone).isoformat(),
-            # Create the data entry dictionary for this record
-            data_entry = {
-                'region': region,
-                'ifDescr': if_descr,
-                'serialNumber': serial_number,
-                'ifOperStatus': if_oper_status,
-                'agent_host': agent_host,
-                'influx_timestamp': record.values['_time'].isoformat(),
-                'elastic_timestamp': elastic_timestamp,
-            }
-            # Append the data entry to the list of all data entries
-            data.append(data_entry)
-            # Check if data is cached
-            cached_data = get_cached_data(bucket, serial_number)
-
-            if not cached_data:
-                # Print the data before caching
-                #print("Data Missing in the Cache")
-                #print(json.dumps(data_entry, indent=4))
-
-                if if_oper_status == 1:
-                    # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
-                    # Cache the new data entry in Redis
-                    # cache_data(bucket, serial_number, data_entry)
-                    # Assuming you have the required data for confirmation (serial_number, olt_number, gpon_port)
-                    confirmation_data = confirm_onu(serial_number, olt_number, gpon_port)
-                    if confirmation_data:
-                        # Process the confirmation data (e.g., print or save it)
-                        cache_data(bucket, serial_number, data_entry)
-                        #print(json.dumps({
-                        #    'bucket': bucket,
-                        #    'ifDescr': if_descr,
-                        #    'serialNumber': serial_number,
-                        #    'ifOperStatus': if_oper_status,
-                        #    'agent_host': agent_host,
-                        #    'gpon_port': gpon_port,
-                        #    'olt_number': olt_number
-                        #}, indent=4))
-                    else:
-                        # Handle failed confirmation
-                        #not_confirmed(bucket, serial_number, data_entry)
-                        #print("ONU confirmation failed or encountered an error.")
-                        csv_writer.writerow([serial_number])
-                        #print(serial_number)
-    # Index the data into Elasticsearch
-    region = BUCKET_INDEX_MAP.get(bucket, "N/A")
-    index_data(bucket, data, region)
-    #total_data = len(data)
-    #print(f"Total Records indexed: {total_data}")
-            
-
-    return  
 # Ce#lery schedule
 app.conf.beat_schedule = {
     'STNOnu-STN-FIBER-every-30-seconds': {
@@ -163,7 +159,7 @@ app.conf.beat_schedule = {
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 60.0,
+        'schedule': 120.0,
         'args': ('MWKs',),
     },
     'MWKn-MWKn-FIBER-every-30-seconds': {
