@@ -6,13 +6,13 @@ from pathlib import Path
 from django.shortcuts import render
 from rest_framework import generics, response, status
 from rest_framework.response import Response
-from .serializers import TvSerializer
+#from .serializers import TvSerializer
 from django.views import generic
 from django.views.generic import View
 from rest_framework.decorators import api_view
 from django.db import connection
 from datetime import datetime, timedelta
-from .models import ConnectedTVs
+#from .models import ConnectedTVs
 from django.http import JsonResponse
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
@@ -20,42 +20,42 @@ from rest_framework.views import APIView
 from .influx_utils import off_bldg
 from .tasks import lark_post
 #Dispaly TVs' Data. 
-class ConnectedTVsListView(generics.ListAPIView):
-    queryset = ConnectedTVs.objects.all()
-    serializer_class = TvSerializer
-
-    def list(self, request):
-        tvs = self.get_queryset()
-        serializer = self.get_serializer(tvs, many=True)
-        return response.Response(serializer.data)
-
-class ConnectedTVsDetailView(generics.RetrieveAPIView):
-    queryset = ConnectedTVs.objects.all()
-    serializer_class = TvSerializer
-    lookup_field = 'id'
-    
-    def put(self, request, *args, **kwags):
-        connected_tv = self.get_object()
-        serializer = TvSerializer(connected_tv, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return response.Response(serializer.data)
-        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def retrieve(self, request, slug):
-        connected_tv = self.get_object()
-        serializer = self.get_serializer(connected_tv)
-        if connected_tv:
-            return response.Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return response.Response('TV Not found!', status=status.HTTP_404_NOT_FOUND)
-
-    def delete(self, request, slug):
-        connected_tv = self.get_object()
-        connected_tv.delete()
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
-
-
+#class ConnectedTVsListView(generics.ListAPIView):
+#    queryset = ConnectedTVs.objects.all()
+#    serializer_class = TvSerializer
+#
+#    def list(self, request):
+#        tvs = self.get_queryset()
+#        serializer = self.get_serializer(tvs, many=True)
+#        return response.Response(serializer.data)
+#
+#class ConnectedTVsDetailView(generics.RetrieveAPIView):
+#    queryset = ConnectedTVs.objects.all()
+#    serializer_class = TvSerializer
+#    lookup_field = 'id'
+#    
+#    def put(self, request, *args, **kwags):
+#        connected_tv = self.get_object()
+#        serializer = TvSerializer(connected_tv, data=request.data, partial=True)
+#        if serializer.is_valid():
+#            serializer.save()
+#            return response.Response(serializer.data)
+#        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
+#    def retrieve(self, request, slug):
+#        connected_tv = self.get_object()
+#        serializer = self.get_serializer(connected_tv)
+#        if connected_tv:
+#            return response.Response(serializer.data, status=status.HTTP_200_OK)
+#        else:
+#            return response.Response('TV Not found!', status=status.HTTP_404_NOT_FOUND)
+#
+#    def delete(self, request, slug):
+#        connected_tv = self.get_object()
+#        connected_tv.delete()
+#        return response.Response(status=status.HTTP_204_NO_CONTENT)
+#
+#
 #COLLECT ALL BUILDINGS DATA FROM INFLUX
 class InfluxDataView(APIView):
     def get(self, request):
@@ -68,7 +68,7 @@ class InfluxDataView(APIView):
         
 #COLLECT DATA FOR A SINGLE BUILDING 
 class InfluxBldgView(APIView):
-    dotenv_path = Path('/home/kitim/projects/konnect-app/konnect/influx_data/.env')
+    dotenv_path = Path('/home/kittim/projects/konnect-app/konnect/influx_data/.env')
     load_dotenv(dotenv_path=dotenv_path)
     
     CSV_BUCKET_MAP = {

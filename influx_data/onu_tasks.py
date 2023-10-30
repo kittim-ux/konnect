@@ -118,7 +118,7 @@ def get_onu_status(bucket):
                     cached_data = get_cached_data(bucket, serial_number)
     
                     if not cached_data:
-                        print("Data Missing in the Cache")
+                        #print("Data Missing in the Cache")
                         if if_oper_status == 1:
                             # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
                             # Cache the new data entry in Redis

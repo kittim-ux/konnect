@@ -9,7 +9,7 @@ from konnect_admin import views
 
 #router.register(r'home', homeViewSet, basename='user')
 router = routers.DefaultRouter() 
-router.register(r'connected_tvs', views.ConnectedTVsDetailView, basename='connected_tvs')
+#router.register(r'connected_tvs', views.ConnectedTVsDetailView, basename='connected_tvs')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

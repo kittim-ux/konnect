@@ -83,22 +83,28 @@ WSGI_APPLICATION = 'konnect.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'mysql.connector.django',
-    #    'NAME': 'konnect', 
-    #    'USER': 'kittim', 
-    #    'PASSWORD': 'KItt48++',
-    #    'HOST': '127.0.0.1', 
-    #    'PORT': '3306',
-    #    'OPTIONS': {
-    #        'init_command': 'SET default_storage_engine=INNODB',
-    #        'charset': 'utf8mb4',
-    #    },
-    #    'CONN_MAX_AGE': 600,
-    #}
+    'default': {
+        'ENGINE': 'django.db.backends.dummy',
+    }
 }
+
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'mysql.connector.django',
+#        'NAME': 'konnect', 
+#        'USER': 'kittim', 
+#        'PASSWORD': 'KItt48++',
+#        'HOST': '127.0.0.1', 
+#        'PORT': '3306',
+#        'OPTIONS': {
+#            'init_command': 'SET default_storage_engine=INNODB',
+#            'charset': 'utf8mb4',
+#        },
+#        'CONN_MAX_AGE': 600,
+#    }
+#}
 
 
 
