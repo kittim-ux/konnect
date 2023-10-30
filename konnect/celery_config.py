@@ -42,7 +42,7 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 1270,
         'args': ('LsmBucket',),
     },
-    ###PoP Power Monitoring Tasks
+    ####PoP Power Monitoring Tasks
     'check_and_alert_task_lsmp': {
         'task': 'konnect_admin.tasks.lark_post_pop',
         'schedule': 35, 
@@ -96,7 +96,7 @@ CELERY_BEAT_SCHEDULE = {
     'check_and_alert_task_mwksp': {
         'task': 'konnect_admin.tasks.lark_post_pop',
         'schedule': 85,
-        'args': ('NWKs',),
+        'args': ('MWKs',),
     },
     'check_and_alert_task_rmmp': {
         'task': 'konnect_admin.tasks.lark_post_pop',
@@ -110,7 +110,9 @@ CELERY_RESULT_SERIALIZER = 'json'
 
 LARK_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/1b78d39a-fe07-436c-ad92-802b00c0b524'
 
-POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/c6ee370c-2257-4960-b076-4543c7e454e4'
+POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
+
+#POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/c6ee370c-2257-4960-b076-4543c7e454e4'
 
 GPON_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 

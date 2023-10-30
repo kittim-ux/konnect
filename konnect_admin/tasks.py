@@ -51,11 +51,15 @@ def lark_post_pop(bucket_name):
     if 'unique_names_sets' not in globals():
         unique_names_sets = {}
 
+    # Initialize data as an empty list
+    #data = []
+
+
     # Check if the bucket_name is in the POP_BUCKET_MAPPING
     if bucket_name in settings.POP_BUCKET_MAPPING:
         # Fetch data using a function specific to PoP power outages
         data = pop_monitor(bucket_name)
-        #print(data)
+        print(bucket_name)
         logger.debug("Data fetched for bucket %s: %s", bucket_name, data)
 
         if data is None or len(data) == 0:
