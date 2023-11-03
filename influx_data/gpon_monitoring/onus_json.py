@@ -134,8 +134,8 @@ def offline_process(building_data, region):
         
         # Send the aggregated message to the alert function
         if any(status['status'] == "Offline" for status in building_data_to_send.values()):
-            #gpon_alert(message, region)
-            print(message)
+            gpon_alert(message, region)
+            #print(message)
 
 
     except requests.exceptions.RequestException as e:
