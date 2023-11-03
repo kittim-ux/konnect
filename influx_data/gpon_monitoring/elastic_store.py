@@ -28,7 +28,7 @@ HEADERS = {
 }
 # Define a mapping of bucket names to Elasticsearch index names
 BUCKET_INDEX_MAP = {
-    'STNOnu': 'stnbucket',
+    'STNOnu': 'stn',
     'MWKs': 'mwks',
     'MWKn': 'mwkn',
     'KWDOnu': 'kwd',
@@ -256,10 +256,6 @@ def gpon_offline_data(region):
     except requests.exceptions.RequestException as e:
         logger.error("An error occurred while fetching data for region %s: %s", region, str(e))
      # Add the except block to handle exceptions
-   
-    
-
-
 
 
 
