@@ -5,6 +5,7 @@ from .influx_utils import off_bldg, pop_monitor
 from .cache_bldgs import is_data_sent, cache_data, pop_cache_data
 import requests
 from django.conf import settings
+import datetime
 
 # Configure the logger
 logger = logging.getLogger(__name__)
@@ -151,22 +152,55 @@ def lark_post(bucket_name):
 
 ###################################################################################
 #GPON MONITORING
+# Define a cache dictionary to store building names, ONUs count, and their last alert timestamp
+alert_cache = {}
+
 def gpon_alert(message, region):
     """
     Sends an alert message with the list of offline buildings.
 
     Args:
         message (str): A message string with offline building names and their total ONUs.
-        bucket (str): The name of the bucket associated with the offline buildings.
+        region (str): The region associated with the offline buildings.
     """
     if message:
-        # Get the label associated with the bucket name from the mapping dictionary
+        # Get the label associated with the region from the mapping dictionary
         label = settings.GPON_BUCKET_LABELS.get(region, 'Unknown Region')
 
-        # Send the message to the Lark webhook with the dynamic title
-        send_lark_alert(message, label, settings.GPON_WEBHOOK_URL)
+        # Split the message into lines and get the building names and ONUs count
+        lines = message.split('\n')[2:]  # Skip the first two lines (header)
+        building_info = [line.split('\t') for line in lines if line]
 
-        # Log the collected building names and label for verification
-        logger.info("Collected offline buildings: %s", message)
-        logger.info("Label: %s", label)
+        # Check if any building name in the message has been alerted within the last 2 hours
+        current_time = datetime.datetime.now()
+        alert_building_info = []
+
+        # Find the maximum length of the building names for formatting
+        max_building_name_length = max(len(building) for building, onus in building_info)
+
+        for building_name, onus_count in building_info:
+            last_alert_time = alert_cache.get(building_name)
+
+            if last_alert_time is None or (current_time - last_alert_time).total_seconds() >= 7200:
+                # Either building name hasn't been alerted before or cache has expired (2 hours)
+                alert_building_info.append((building_name, onus_count))
+                # Update the cache with the current time
+                alert_cache[building_name] = current_time
+
+        # If there are building names to alert, send the message
+        if alert_building_info:
+            # Prepare the filtered message with building names and ONUs count with adjusted padding
+            filtered_message = "Name" + ' ' * (max_building_name_length - 4) + "\tONUs\n" + \
+                              "\n".join(f"{building}{(' ' * (max_building_name_length - len(building)))}\t{onus}"
+                                        for building, onus in alert_building_info)
+
+            # Send the filtered message to the Lark webhook with the dynamic title
+            send_lark_alert(filtered_message, label, settings.GPON_WEBHOOK_URL)
+
+            # Log the collected building names and label for verification
+            logger.info("Collected offline buildings: %s", filtered_message)
+            logger.info("Label: %s", label)
+
+
+
 
