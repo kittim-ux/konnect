@@ -37,6 +37,7 @@ BUCKET_HOST_MAP = {
     'MWKn': 'MWKn-FIBER',
     'KWDOnu': 'KWD-FIBER',
     'KSNOnu': 'KSN-FIBER',
+    'HTROnu': 'HTR-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
@@ -46,6 +47,7 @@ BUCKET_INDEX_MAP = {
     'MWKn': 'mwkn',
     'KWDOnu': 'kwd',
     'KSNOnu': 'ksn',
+    'HTROnu': 'htr',
 }
 BUCKET_REGION_MAP = {
     'STNOnu': 'stn',
@@ -53,6 +55,7 @@ BUCKET_REGION_MAP = {
     'MWKn': 'mwkn',
     'KWDOnu': 'kwd',
     'KSNOnu': 'ksn',
+    'HTROnu': 'htr',
     # Add more mappings as needed
 }
 
@@ -119,7 +122,7 @@ def get_onu_status(bucket):
                     cached_data = get_cached_data(bucket, serial_number)
     
                     if not cached_data:
-                        #print("Data Missing in the Cache")
+                        print("Data Missing in the Cache")
                         if if_oper_status == 1:
                             # Data is not cached, and ifOperStatus is 1 (ONLINE), proceed to cache and confirm
                             # Cache the new data entry in Redis
@@ -130,15 +133,15 @@ def get_onu_status(bucket):
                             if confirmation_data:
                                 # Process the confirmation data (e.g., print or save it)
                                 cache_data(bucket, serial_number, data_entry)
-                                #print(json.dumps({
-                                #    'bucket': bucket,
-                                #    'ifDescr': if_descr,
-                                #    'serialNumber': serial_number,
-                                #    'ifOperStatus': if_oper_status,
-                                #    'agent_host': agent_host,
-                                #    'gpon_port': gpon_port,
-                                #    'olt_number': olt_number
-                                #}, indent=4))
+                                print(json.dumps({
+                                    'bucket': bucket,
+                                    'ifDescr': if_descr,
+                                    'serialNumber': serial_number,
+                                    'ifOperStatus': if_oper_status,
+                                    'agent_host': agent_host,
+                                    'gpon_port': gpon_port,
+                                    'olt_number': olt_number
+                                }, indent=4))
                             else:
                                 #print("ONU confirmation failed or encountered an error.")
                                 csv_writer.writerow([serial_number])
@@ -156,7 +159,7 @@ def get_onu_status(bucket):
 app.conf.beat_schedule = {
     'STNOnu-STN-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
-        'schedule': 150.0,
+        'schedule': 60.0,
         'args': ('STNOnu',),
     },
     'MWKs-MWKs-FIBER-every-30-seconds': {
@@ -178,6 +181,11 @@ app.conf.beat_schedule = {
         'task': 'onu_status_task',
         'schedule': 110.0,
         'args': ('KSNOnu',),
+    },
+    'HTROnu-HTR-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 130.0,
+        'args': ('HTROnu',),
     },
     #Add more schedules for other buckets
     # Add more schedules for other buckets
