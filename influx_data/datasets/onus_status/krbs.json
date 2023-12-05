@@ -1,0 +1,574 @@
+[
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/15:1",
+        "serialNumber": "AHDI:8E451C10",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "15",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:06:58.065653+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:1",
+        "serialNumber": "AHDI:8E42AFD0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:06:58.442232+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:13",
+        "serialNumber": "AHDI:8E438900",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:06:59.708288+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:14",
+        "serialNumber": "AHDI:8E431BE0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:01.324812+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:15",
+        "serialNumber": "AHDI:8E438260",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:02.296322+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:16",
+        "serialNumber": "AHDI:8E42B5C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:03.166356+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:18",
+        "serialNumber": "AHDI:8E431780",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:03.637304+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:2",
+        "serialNumber": "AHDI:8E4333F0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:04.232656+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:3",
+        "serialNumber": "AHDI:8E42B050",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:05.221073+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:5",
+        "serialNumber": "AHDI:8E4382C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:06.154274+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:6",
+        "serialNumber": "AHDI:8E432C20",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:06.693384+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/1:8",
+        "serialNumber": "AHDI:8E448470",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:07.467217+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:1",
+        "serialNumber": "AHDI:8E4332C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:08.035774+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:2",
+        "serialNumber": "AHDI:8E433240",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:09.091679+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:3",
+        "serialNumber": "AHDI:8E432E00",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:09.727042+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:4",
+        "serialNumber": "AHDI:8E4307B0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:10.380662+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:5",
+        "serialNumber": "AHDI:8E4333E0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:11.281399+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:6",
+        "serialNumber": "AHDI:8E431800",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:11.781802+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:7",
+        "serialNumber": "AHDI:8E433350",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:13.279164+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/3:8",
+        "serialNumber": "AHDI:8E433220",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:13.833428+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:1",
+        "serialNumber": "AHDI:8E4333B0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:14.456363+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:11",
+        "serialNumber": "AHDI:8E432E30",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:15.499772+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:2",
+        "serialNumber": "AHDI:8E41A110",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:15.611405+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:3",
+        "serialNumber": "AHDI:8E433210",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:15.756496+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:4",
+        "serialNumber": "AHDI:8E431AD0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:15.855920+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:6",
+        "serialNumber": "AHDI:8E432DA0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:15.974041+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:7",
+        "serialNumber": "AHDI:8E4317C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.153434+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:8",
+        "serialNumber": "AHDI:8E433480",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.272717+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/4:9",
+        "serialNumber": "AHDI:8E437D10",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.391860+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:1",
+        "serialNumber": "AHDI:8E4332E0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.477215+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:2",
+        "serialNumber": "AHDI:8E433150",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.634799+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:3",
+        "serialNumber": "AHDI:8E42B1E0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.724874+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:4",
+        "serialNumber": "AHDI:8E42ADE0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.803247+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:5",
+        "serialNumber": "AHDI:8E4461E0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.894388+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:6",
+        "serialNumber": "AHDI:8E432B50",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:16.970700+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/5:8",
+        "serialNumber": "AHDI:8E437E30",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.098874+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/6:1",
+        "serialNumber": "AHDI:8E445D10",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "6",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.204027+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:1",
+        "serialNumber": "AHDI:8E443850",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.315067+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:2",
+        "serialNumber": "AHDI:8E42B1C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.481636+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:3",
+        "serialNumber": "AHDI:8E437F80",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.569455+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:4",
+        "serialNumber": "AHDI:8E438650",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.663812+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:5",
+        "serialNumber": "AHDI:8E4384A0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.744539+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:6",
+        "serialNumber": "AHDI:8E438240",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.854015+03:00"
+        ]
+    },
+    {
+        "region": "krbs",
+        "ifDescr": "GPON0/7:7",
+        "serialNumber": "AHDI:8E432E20",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.112.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2023-12-05T04:06:57.987903+00:00",
+        "elastic_timestamp": [
+            "2023-12-05T07:07:17.956708+03:00"
+        ]
+    }
+]

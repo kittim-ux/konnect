@@ -38,6 +38,7 @@ BUCKET_HOST_MAP = {
     'KWDOnu': 'KWD-FIBER',
     'KSNOnu': 'KSN-FIBER',
     'HTROnu': 'HTR-FIBER',
+    'KRBSOnu': 'KRBS-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
@@ -48,6 +49,7 @@ BUCKET_INDEX_MAP = {
     'KWDOnu': 'kwd',
     'KSNOnu': 'ksn',
     'HTROnu': 'htr',
+    'KRBSOnu': 'krbs',
 }
 BUCKET_REGION_MAP = {
     'STNOnu': 'stn',
@@ -56,6 +58,7 @@ BUCKET_REGION_MAP = {
     'KWDOnu': 'kwd',
     'KSNOnu': 'ksn',
     'HTROnu': 'htr',
+    'KRBSOnu': 'krbs',
     # Add more mappings as needed
 }
 
@@ -145,6 +148,15 @@ def get_onu_status(bucket):
                             else:
                                 #print("ONU confirmation failed or encountered an error.")
                                 csv_writer.writerow([serial_number])
+                                print(json.dumps({
+                                    'bucket': bucket,
+                                    'ifDescr': if_descr,
+                                    'serialNumber': serial_number,
+                                    'ifOperStatus': if_oper_status,
+                                    'agent_host': agent_host,
+                                    'gpon_port': gpon_port,
+                                    'olt_number': olt_number
+                                }, indent=4))
     
         # Index the data into Elasticsearch
         region = BUCKET_REGION_MAP.get(bucket, "N/A")
@@ -186,6 +198,11 @@ app.conf.beat_schedule = {
         'task': 'onu_status_task',
         'schedule': 130.0,
         'args': ('HTROnu',),
+    },
+    'KRBSOnu-KRBS-FIBER-every-30-seconds': {
+        'task': 'onu_status_task',
+        'schedule': 145.0,
+        'args': ('KRBSOnu',),
     },
     #Add more schedules for other buckets
     # Add more schedules for other buckets

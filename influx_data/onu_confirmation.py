@@ -14,7 +14,7 @@ def confirm_onu(serial_number, olt_number, gpon_port):
 
     # Define the headers with the bearer token
     headers = {
-        'Authorization': 'Bearer WRrPEVUYUCcA6ESXRqOC58shsD01VTeSDQFB9XNvjZf2IHIPCrr5JynApKuCWkENvEWAf79V2Sj6CtwB',
+        'Authorization': 'Bearer SX10u7hcvNVDUAGkIkV0SoCspfJGk6DXdFqNmwLHS2zsOGA1ruJ4t3fPMgZsT2mCeW5nMSeSK06KGPMH',
     }
 
     try:
