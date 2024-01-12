@@ -157,6 +157,7 @@ def get_onu_status(bucket):
                                     'gpon_port': gpon_port,
                                     'olt_number': olt_number
                                 }, indent=4))
+                                #cache_data(bucket, serial_number, data_entry)
     
         # Index the data into Elasticsearch
         region = BUCKET_REGION_MAP.get(bucket, "N/A")
@@ -204,7 +205,7 @@ app.conf.beat_schedule = {
         'schedule': 145.0,
         'args': ('KRBSOnu',),
     },
-    #Add more schedules for other buckets
+    ##Add more schedules for other buckets
     # Add more schedules for other buckets
 }
 

@@ -3,7 +3,7 @@ import json
 
 def confirm_onu(serial_number, olt_number, gpon_port):
     # Define the API URL
-    api_url = "http://app.sasakonnect.net:13000/api/onu-confirmation"
+    api_url = "http://105.29.165.232:13000/api/onu-confirmation"
 
     # Define the data to be sent in the POST request
     data = {

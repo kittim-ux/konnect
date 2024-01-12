@@ -42,7 +42,12 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 1270,
         'args': ('LsmBucket',),
     },
+
+
     ####PoP Power Monitoring Tasks
+
+
+
     'check_and_alert_task_lsmp': {
         'task': 'konnect_admin.tasks.lark_post_pop',
         'schedule': 35, 
@@ -103,6 +108,16 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 87,
         'args': ('RMM',),
     },
+    'check_and_alert_task_krbs': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 87,
+        'args': ('KRBSOnu',),
+    },
+    'check_and_alert_task_htrss': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 87,
+        'args': ('HTROnu',),
+    },
 }
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -110,9 +125,9 @@ CELERY_RESULT_SERIALIZER = 'json'
 
 LARK_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
-#POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
+POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
-POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/c6ee370c-2257-4960-b076-4543c7e454e4'
+#POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/c6ee370c-2257-4960-b076-4543c7e454e4'
 
 GPON_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
@@ -141,6 +156,8 @@ POP_BUCKET_LABELS = {
     'G45N1Bucket': 'Power Outage in G45N PoP',
     'MWKs': 'Power Outage in MWKs PoP',
     'RMM': 'Power Outage in ROY PoP',
+    'KRBSOnu': 'Power Outage in KRBS PoP',
+    'HTROnu': 'Power Outage in HTR PoP',
     # Add more mappings as needed for other PoP buckets
 }
 GPON_BUCKET_LABELS = {

@@ -14,7 +14,7 @@ from konnect_admin.tasks import gpon_alert
 # Define the directory where building data will be stored
 json_directory = '/home/kittim/projects/konnect-app/konnect/influx_data/datasets/'
 # Define the API URL and headers for fetching building-to-ONU associations
-API_URL = 'http://app.sasakonnect.net:13000/api/onus/'
+API_URL = 'http://105.29.165.232:13000/api/onus/'
 HEADERS = {
     'Authorization': 'Bearer SX10u7hcvNVDUAGkIkV0SoCspfJGk6DXdFqNmwLHS2zsOGA1ruJ4t3fPMgZsT2mCeW5nMSeSK06KGPMH',
 }
@@ -54,7 +54,7 @@ end_time_str = end_time.isoformat()
 # Function to fetch data for a region and organize it into a dictionary
 onu_status_dict = {}
 def gpon_offline_data(region):
-    url = f'http://app.sasakonnect.net:13000/api/onus/{region}'
+    url = f'http://105.29.165.232:13000/api/onus/{region}'
     try:
         response = requests.get(url, headers=HEADERS)
         response.raise_for_status()

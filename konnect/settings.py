@@ -177,5 +177,7 @@ POP_BUCKET_MAPPING = {
     'G45N1Bucket':'Qwetu PoP',
     'MWKs':'MWKs PoP',
     'RMM':'Joppa PoP',
+    'KRBSOnu':'KRBS PoP',
+    'HTROnu':'HTR PoP',
     # Add more mappings as needed for other PoP buckets
 }

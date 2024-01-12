@@ -10,6 +10,18 @@ def extract_gpon_port(if_descr):
     return "N/A"
 
 def extract_olt_number(agent_host):
+    # Hardcoded IP-OLT mappings to match the correct OLTs for SUNTON
+    hardcoded_mappings = {
+        "10.103.0.1": 5,
+        "10.103.0.2": 6,
+        "10.103.0.3": 7,
+        "10.103.0.4": 8,
+        # Add more mappings as needed
+    }
+
+    # Check if the IP is in the hardcoded mappings
+    if agent_host in hardcoded_mappings:
+        return hardcoded_mappings[agent_host]
     # Extract the olt_number from agent_host, assuming it's an IP address like "10.x.y.z"
     parts = agent_host.split('.')
     if len(parts) == 4:

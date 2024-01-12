@@ -28,12 +28,14 @@ BUCKET_HOST_MAP = {
     'G45SBucket': 'G45-FIBER',
     'G45N1Bucket': 'G45N-FIBER',
     'LsmBucket': 'LSM-FIBER',
-    'htrbucket': 'HTR-FIBER',
+    #'htrbucket': 'HTR-FIBER',
     'STNOnu':'STN-FIBER',
     'KWDOnu': 'KWD-FIBER',
     'MWKn': 'MWKn-FIBER',
     'KSNOnu': 'KSN-FIBER',
     'MWKs': 'MWKs-FIBER',
+    'KRBSOnu': 'KRBS-FIBER',
+    'HTROnu': 'HTR-FIBER',
 }
 
 def off_bldg(bucket):
@@ -104,6 +106,8 @@ def pop_monitor(bucket):
             'G45N1Bucket': 'Qwetu PoP',
             'MWKs': 'MWKs PoP',
             'RMM': 'Joppa PoP',
+            'KRBSOnu': 'KRBS PoP',
+            'HTROnu': 'HTR PoP',
         }
         if bucket in POP_BUCKET_MAPPING:
             # Handle PoP-specific bucket names
