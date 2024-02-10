@@ -36,7 +36,8 @@ BUCKET_HOST_MAP = {
     'MWKs': 'MWKs-FIBER',
     'KRBSOnu': 'KRBS-FIBER',
     'HTROnu': 'HTR-FIBER',
-}
+    'LSMOnu': 'LSM-FIBER',
+},
 
 def off_bldg(bucket):
     dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
@@ -108,6 +109,7 @@ def pop_monitor(bucket):
             'RMM': 'Joppa PoP',
             'KRBSOnu': 'KRBS PoP',
             'HTROnu': 'HTR PoP',
+            'LSMOnu': 'LSM PoP',
         }
         if bucket in POP_BUCKET_MAPPING:
             # Handle PoP-specific bucket names

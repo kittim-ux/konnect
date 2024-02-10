@@ -1,0 +1,496 @@
+[
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/15:1",
+        "serialNumber": "AHDI:8E43FD90",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "15",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:42.726913+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/1:1",
+        "serialNumber": "AHDI:8E442620",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:42.953051+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/1:2",
+        "serialNumber": "AHDI:8E45A620",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:42.953800+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/1:4",
+        "serialNumber": "AHDI:8E450AC0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "1",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.209962+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/2:2",
+        "serialNumber": "AHDI:8E458E10",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "2",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.511991+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/2:3",
+        "serialNumber": "AHDI:8E45B4C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "2",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.514043+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/2:4",
+        "serialNumber": "AHDI:8E45A660",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "2",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.515742+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/2:5",
+        "serialNumber": "AHDI:8E45A6A0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "2",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.518121+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/2:7",
+        "serialNumber": "AHDI:8E45A6D0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "2",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.520440+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/3:1",
+        "serialNumber": "AHDI:8E45A630",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.522382+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/3:2",
+        "serialNumber": "AHDI:8E45A580",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.523978+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/3:3",
+        "serialNumber": "AHDI:8E45A550",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "3",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.525508+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:1",
+        "serialNumber": "AHDI:8E441320",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.527261+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:11",
+        "serialNumber": "AHDI:8E443540",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.528855+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:2",
+        "serialNumber": "AHDI:8E45A890",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.531346+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:3",
+        "serialNumber": "AHDI:8E44B8D0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.533281+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:4",
+        "serialNumber": "AHDI:8E443720",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.534197+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:5",
+        "serialNumber": "AHDI:8E4425B0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.535087+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:8",
+        "serialNumber": "AHDI:8E4438B0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.535908+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/4:9",
+        "serialNumber": "AHDI:8E443C70",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "4",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.536681+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:1",
+        "serialNumber": "AHDI:8E45C790",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.537449+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:2",
+        "serialNumber": "AHDI:8E457F50",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.538250+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:4",
+        "serialNumber": "AHDI:8E456330",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.538851+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:5",
+        "serialNumber": "AHDI:8E441950",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.539436+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:6",
+        "serialNumber": "AHDI:8E454B70",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.539966+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:7",
+        "serialNumber": "AHDI:8E457E40",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.540497+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/5:9",
+        "serialNumber": "AHDI:8E45B0C0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "5",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.541081+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/6:1",
+        "serialNumber": "AHDI:8E433AE0",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "6",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:43.541697+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/6:2",
+        "serialNumber": "AHDI:8E434B30",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "6",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.021148+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/6:4",
+        "serialNumber": "AHDI:8E441A80",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "6",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.022650+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:1",
+        "serialNumber": "AHDI:8E452E90",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.023970+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:2",
+        "serialNumber": "AHDI:8E443950",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.024939+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:3",
+        "serialNumber": "AHDI:8E434E20",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.025850+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:4",
+        "serialNumber": "AHDI:8E441F30",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.026877+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:5",
+        "serialNumber": "AHDI:8E44B930",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.027611+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:6",
+        "serialNumber": "AHDI:8E45C000",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.028297+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/7:7",
+        "serialNumber": "AHDI:8E443560",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "7",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.028894+03:00"
+        ]
+    },
+    {
+        "region": "lsm",
+        "ifDescr": "GPON0/8:2",
+        "serialNumber": "AHDI:8E443790",
+        "ifOperStatus": 1.0,
+        "agent_host": "10.113.0.1",
+        "gpon_port": "8",
+        "olt_number": 1,
+        "influx_timestamp": "2024-01-23T01:41:00+00:00",
+        "elastic_timestamp": [
+            "2024-01-23T04:41:44.029354+03:00"
+        ]
+    }
+]

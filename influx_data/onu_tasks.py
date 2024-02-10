@@ -39,6 +39,7 @@ BUCKET_HOST_MAP = {
     'KSNOnu': 'KSN-FIBER',
     'HTROnu': 'HTR-FIBER',
     'KRBSOnu': 'KRBS-FIBER',
+    'LSMOnu': 'LSM-FIBER',
 }
 
 # Define a mapping of bucket names to Elasticsearch index names
@@ -50,6 +51,7 @@ BUCKET_INDEX_MAP = {
     'KSNOnu': 'ksn',
     'HTROnu': 'htr',
     'KRBSOnu': 'krbs',
+    'LSMOnu': 'lsm',
 }
 BUCKET_REGION_MAP = {
     'STNOnu': 'stn',
@@ -59,6 +61,7 @@ BUCKET_REGION_MAP = {
     'KSNOnu': 'ksn',
     'HTROnu': 'htr',
     'KRBSOnu': 'krbs',
+    'LSMOnu': 'lsm',
     # Add more mappings as needed
 }
 
@@ -170,40 +173,45 @@ def get_onu_status(bucket):
 
 # Ce#lery schedule
 app.conf.beat_schedule = {
-    'STNOnu-STN-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 60.0,
-        'args': ('STNOnu',),
-    },
-    'MWKs-MWKs-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 120.0,
-        'args': ('MWKs',),
-    },
-    'MWKn-MWKn-FIBER-every-30-seconds': {
+    #'STNOnu-STN-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 60.0,
+    #    'args': ('STNOnu',),
+    #},
+    #'MWKs-MWKs-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 120.0,
+    #    'args': ('MWKs',),
+    #},
+    #'MWKn-MWKn-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 80.0,
+    #    'args': ('MWKn',),
+    #},
+    #'KWDOnu-KWD-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 100.0,
+    #    'args': ('KWDOnu',),
+    #},
+    #'KSNOnu-KSN-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 110.0,
+    #    'args': ('KSNOnu',),
+    #},
+    #'HTROnu-HTR-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 130.0,
+    #    'args': ('HTROnu',),
+    #},
+    #'KRBSOnu-KRBS-FIBER-every-30-seconds': {
+    #    'task': 'onu_status_task',
+    #    'schedule': 145.0,
+    #    'args': ('KRBSOnu',),
+    #},
+    'LSMOnu-LSM-FIBER-every-30-seconds': {
         'task': 'onu_status_task',
         'schedule': 80.0,
-        'args': ('MWKn',),
-    },
-    'KWDOnu-KWD-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 100.0,
-        'args': ('KWDOnu',),
-    },
-    'KSNOnu-KSN-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 110.0,
-        'args': ('KSNOnu',),
-    },
-    'HTROnu-HTR-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 130.0,
-        'args': ('HTROnu',),
-    },
-    'KRBSOnu-KRBS-FIBER-every-30-seconds': {
-        'task': 'onu_status_task',
-        'schedule': 145.0,
-        'args': ('KRBSOnu',),
+        'args': ('LSMOnu',),
     },
     ##Add more schedules for other buckets
     # Add more schedules for other buckets

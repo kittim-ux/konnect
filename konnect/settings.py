@@ -179,5 +179,6 @@ POP_BUCKET_MAPPING = {
     'RMM':'Joppa PoP',
     'KRBSOnu':'KRBS PoP',
     'HTROnu':'HTR PoP',
+    'LSMOnu': 'LSM PoP',
     # Add more mappings as needed for other PoP buckets
 }

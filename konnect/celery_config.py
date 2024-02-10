@@ -118,6 +118,11 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 87,
         'args': ('HTROnu',),
     },
+    'check_and_alert_task_lsmgpon': {
+        'task': 'konnect_admin.tasks.lark_post_pop',
+        'schedule': 50,
+        'args': ('LSMOnu',),
+    },
 }
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -158,6 +163,7 @@ POP_BUCKET_LABELS = {
     'RMM': 'Power Outage in ROY PoP',
     'KRBSOnu': 'Power Outage in KRBS PoP',
     'HTROnu': 'Power Outage in HTR PoP',
+    'LSMOnu': 'Power Outage in LSM-G PoP',
     # Add more mappings as needed for other PoP buckets
 }
 GPON_BUCKET_LABELS = {
