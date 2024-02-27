@@ -1,4 +1,3 @@
-# celery_config.py
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_BEAT_SCHEDULE = {
@@ -42,15 +41,10 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 1270,
         'args': ('LsmBucket',),
     },
-
-
     ####PoP Power Monitoring Tasks
-
-
-
     'check_and_alert_task_lsmp': {
         'task': 'konnect_admin.tasks.lark_post_pop',
-        'schedule': 35, 
+        'schedule': 96, 
         'args': ('LsmBucket',),
     },
     'check_and_alert_task_zmmp': {
@@ -110,17 +104,17 @@ CELERY_BEAT_SCHEDULE = {
     },
     'check_and_alert_task_krbs': {
         'task': 'konnect_admin.tasks.lark_post_pop',
-        'schedule': 87,
+        'schedule': 93,
         'args': ('KRBSOnu',),
     },
     'check_and_alert_task_htrss': {
         'task': 'konnect_admin.tasks.lark_post_pop',
-        'schedule': 87,
+        'schedule': 98,
         'args': ('HTROnu',),
     },
     'check_and_alert_task_lsmgpon': {
         'task': 'konnect_admin.tasks.lark_post_pop',
-        'schedule': 50,
+        'schedule': 105,
         'args': ('LSMOnu',),
     },
 }
@@ -130,7 +124,9 @@ CELERY_RESULT_SERIALIZER = 'json'
 
 LARK_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
 
-POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
+#POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/93f0c87b-bf6b-4c66-a377-26d1ce036800'
+
+POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/d65ee244-88c5-423c-a856-17fbb492d914'
 
 #POP_WEBHOOK_URL = 'https://open.larksuite.com/open-apis/bot/v2/hook/c6ee370c-2257-4960-b076-4543c7e454e4'
 

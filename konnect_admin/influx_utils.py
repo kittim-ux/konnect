@@ -18,7 +18,7 @@ CSV_BUCKET_MAP = {
     'G45N1Bucket': 'g45nbldg.csv',
     'G45SBucket': 'g45sbldg.csv',
     'LsmBucket': 'lsmbldg.csv',
-    'htrbucket': 'htrbldg.csv',
+    #'htrbucket': 'htrbldg.csv',
 }
 BUCKET_HOST_MAP = {
     'kwtbucket': 'KWT-FIBER',
@@ -27,7 +27,7 @@ BUCKET_HOST_MAP = {
     'RMM': 'ROY-FIBER',
     'G45SBucket': 'G45-FIBER',
     'G45N1Bucket': 'G45N-FIBER',
-    'LsmBucket': 'LSM-FIBER',
+    #'LsmBucket': 'LSM-FIBER',
     #'htrbucket': 'HTR-FIBER',
     'STNOnu':'STN-FIBER',
     'KWDOnu': 'KWD-FIBER',
@@ -37,10 +37,10 @@ BUCKET_HOST_MAP = {
     'KRBSOnu': 'KRBS-FIBER',
     'HTROnu': 'HTR-FIBER',
     'LSMOnu': 'LSM-FIBER',
-},
+}
 
 def off_bldg(bucket):
-    dataset_dir = '/home/kitim/projects/konnect-app/konnect/influx_data/datasets'
+    dataset_dir = '/home/ytech/monitoring/konnect/influx_data/datasets'
     token = os.getenv('token')
     org = os.getenv('org')
     url = os.getenv('url')
@@ -109,7 +109,7 @@ def pop_monitor(bucket):
             'RMM': 'Joppa PoP',
             'KRBSOnu': 'KRBS PoP',
             'HTROnu': 'HTR PoP',
-            'LSMOnu': 'LSM PoP',
+            'LSMOnu': 'LSM-G PoP',
         }
         if bucket in POP_BUCKET_MAPPING:
             # Handle PoP-specific bucket names
@@ -141,4 +141,3 @@ def pop_monitor(bucket):
             return []
     else:
         return []
-
